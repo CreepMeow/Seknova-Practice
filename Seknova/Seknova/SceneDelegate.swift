@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let rootVC = MainViewController(nibName: "MainViewController", bundle: nil)
+        let rootVC = LoginViewController(nibName: "LoginViewController", bundle: nil) // 用 nibName 初始化
         let navigationController = UINavigationController(rootViewController: rootVC)
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
@@ -52,4 +52,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
-
