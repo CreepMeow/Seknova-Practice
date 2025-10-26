@@ -1,61 +1,71 @@
 //
 //  BindPhoneViewController.swift
-//  Seknova
+//  Seknova-Practice
 //
-//  Created by imac-3282 on 2025/10/14.
+//  Created by imac-2156 on 2025/10/6.
 //
 
 import UIKit
 
-class BindPhoneViewController: UIViewController, UITextFieldDelegate {
+class BindPhoneViewController: UIViewController {
+
     // MARK: - IBOutlet
-    @IBOutlet weak var phoneTextField: UITextField!
-    @IBOutlet weak var codeTextField: UITextField!
-    @IBOutlet weak var getCodeButton: UIButton!
-    @IBOutlet weak var inputCodeButton: UIButton!
-    @IBOutlet weak var backButton: UIButton!
+    
+    @IBOutlet weak var txfVerify: UITextField!
+    @IBOutlet weak var txfPhone: UITextField!
+    @IBOutlet weak var btnReturn: UIButton!
+    
+    // MARK: - Variables
+    let maxVerifyLength = 6
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
-        phoneTextField.delegate = self
-        codeTextField.delegate = self
+        setUi()
     }
-    // MARK: - UI Setting
-    func setUI() {
-        navigationItem.title = "綁定手機"
-        phoneTextField.keyboardType = .numberPad
-        codeTextField.keyboardType = .numberPad
-        phoneTextField.placeholder = "請輸入您的電話號碼"
-        codeTextField.placeholder = "請輸入您的驗證碼"
-        getCodeButton.setTitle("獲取驗證碼", for: .normal)
-        inputCodeButton.setTitle("輸入驗證碼", for: .normal)
-        backButton.setTitle("返回", for: .normal)
+    
+    // MARK: - UI Settings
+    func setUi(){
+        txfPhone.delegate = self
+        txfVerify.delegate = self
+
+        txfPhone.keyboardType = .numberPad
+        txfVerify.keyboardType = .numberPad
     }
+    
     // MARK: - IBAction
-    @IBAction func getCodeTapped(_ sender: UIButton) {
-        // 這裡可加上發送驗證碼的邏輯
+    
+    @IBAction func returnButtonTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
-    @IBAction func inputCodeTapped(_ sender: UIButton) {
-        // 這裡可加上驗證碼驗證的邏輯
-    }
-    @IBAction func backTapped(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
-    }
-    // MARK: - UITextFieldDelegate
+}
+// MARK: - Extensions
+extension BindPhoneViewController: UITextFieldDelegate {
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == phoneTextField {
-            // 只允許數字
-            let allowed = CharacterSet.decimalDigits
-            return string.rangeOfCharacter(from: allowed.inverted) == nil
-        } else if textField == codeTextField {
-            // 只允許一個數字
-            let allowed = CharacterSet.decimalDigits
-            let current = (textField.text ?? "") as NSString
-            let newString = current.replacingCharacters(in: range, with: string)
-            return newString.count <= 1 && string.rangeOfCharacter(from: allowed.inverted) == nil
+        
+        if string.isEmpty {
+            return true
+        }
+        
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        guard allowedCharacters.isSuperset(of: characterSet) else {
+            return false
+        }
+        
+        guard let currentText = textField.text else {
+            return true
+        }
+        
+        let newLength = currentText.count + string.count - range.length
+
+        if textField == txfVerify {
+            return newLength <= maxVerifyLength
         }
         return true
     }
 }
+
+// MARK: - Protocol
+

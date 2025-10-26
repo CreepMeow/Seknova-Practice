@@ -1,5 +1,5 @@
 //
-//  GlycemicIndexViewController.swift
+//  ProfileViewController.swift
 //  Seknova-Practice
 //
 //  Created by imac-2156 on 2025/10/8.
@@ -7,25 +7,23 @@
 
 import UIKit
 
-class GlycemicIndexViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
     // MARK: - IBOutlet
     
     
     // MARK: - Variables
     
-    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
+        
     }
     
     // MARK: - UI Settings
-    func setUI() {
-        navigationItem.hidesBackButton = true
-        title = "即時血糖"
-    }
+
+
+    
     // MARK: - IBAction
     
 }
@@ -33,5 +31,4 @@ class GlycemicIndexViewController: UIViewController {
 
 
 // MARK: - Protocol
-
 

@@ -1,11 +1,11 @@
 //
 //  NavigationBar.swift
-//  Seknova
+//  Seknova-Practice
 //
-//  Created by imac-3282 on 2025/10/14.
+//  Created by imac-2156 on 2025/10/7.
 //
+
 import UIKit
-import Foundation
 
 struct NavigationBar {
 
@@ -32,6 +32,6 @@ struct NavigationBar {
         navBar.standardAppearance = appearance
         navBar.scrollEdgeAppearance = appearance
         navBar.compactAppearance = appearance
-        navBar.tintColor = Color.mainWhite
+        navBar.tintColor = Color.mainWhite 
     }
 }

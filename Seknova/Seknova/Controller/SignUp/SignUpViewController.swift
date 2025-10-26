@@ -30,11 +30,11 @@ class SignUpViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
+        setUi()
     }
     
     // MARK: - UI Settings
-    func setUI() {
+    func setUi() {
         btnCheck.setTitle("", for: .normal)
         btnCheck.layer.cornerRadius = 13
         btnCheck.layer.borderWidth = 1
@@ -81,11 +81,11 @@ class SignUpViewController: UIViewController {
     
 }
 // MARK: - Extensions
-//extension SignUpViewController: PrivateAgreeDelegate {
-    //func didTappedPrivateAgree() {
-    //    print("隱私條款被點擊")
-  //  }
-//}
+extension SignUpViewController: PrivateAgreeDelegate {
+    func didTappedPrivateAgree() {
+        print("隱私條款被點擊")
+    }
+}
 
 extension SignUpViewController: ActivatedAccountDelegate {
     func didTappedActivatedAccount() {

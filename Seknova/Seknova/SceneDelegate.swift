@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  Seknova
+//  Seknova-Practice
 //
-//  Created by imac-3282 on 2025/9/24.
+//  Created by imac-2156 on 2025/9/24.
 //
 
 import UIKit
@@ -13,13 +13,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        NavigationBar.setupNavigationBar()
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let rootVC = LoginViewController(nibName: "LoginViewController", bundle: nil) // 用 nibName 初始化
+        let rootVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
         let navigationController = UINavigationController(rootViewController: rootVC)
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -52,3 +54,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
+

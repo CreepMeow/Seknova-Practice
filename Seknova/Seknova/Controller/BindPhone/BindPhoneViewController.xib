@@ -10,11 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BindPhoneViewController" customModule="Seknova" customModuleProvider="target">
             <connections>
-                <outlet property="Backbtn" destination="vuh-b0-yLy" id="oBi-xU-Dgz"/>
-                <outlet property="Getbtn" destination="u1Q-Oi-tT1" id="Lm5-jF-GDb"/>
-                <outlet property="Inputbtn" destination="mXN-fE-FxM" id="Jf3-t1-zHo"/>
-                <outlet property="Inputfed" destination="m1X-2D-UcK" id="vKN-4y-fmY"/>
-                <outlet property="Numberfed" destination="ZI9-IF-41t" id="w6m-1Q-Jft"/>
+                <outlet property="btnReturn" destination="6YZ-KU-GtZ" id="Qkk-4b-kZa"/>
+                <outlet property="txfPhone" destination="1ts-NS-d85" id="cOW-D4-Op8"/>
+                <outlet property="txfVerify" destination="s9Y-cW-5Vs" id="gsY-rI-BLm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,90 +21,129 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.34999999999999998" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="rRL-d7-RQf">
-                    <rect key="frame" x="-160" y="56" width="713" height="832"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.25" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="GFm-3Y-zgk">
+                    <rect key="frame" x="-21" y="71.666666666666686" width="393" height="759"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BIND PHONE CALL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHS-Yx-U8V">
-                    <rect key="frame" x="69" y="0.0" width="270" height="224.33333333333331"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                    <color key="textColor" red="0.69411766529999996" green="0.1607843041" blue="0.1725490093" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="綁定手機" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7OP-OZ-JxO">
-                    <rect key="frame" x="61" y="56" width="270" height="224.33333333333331"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                    <color key="textColor" red="0.69411766529999996" green="0.1607843041" blue="0.1725490093" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sensorText" translatesAutoresizingMaskIntoConstraints="NO" id="WQW-tr-LNC">
-                    <rect key="frame" x="53" y="145" width="286" height="170"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sensorText" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-Ts-o75">
+                    <rect key="frame" x="36.333333333333343" y="238" width="321" height="221"/>
                 </imageView>
-                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="請輸入您的手機號碼" textAlignment="natural" minimumFontSize="21" id="ZI9-IF-41t">
-                    <rect key="frame" x="120" y="215" width="181" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sensorText" translatesAutoresizingMaskIntoConstraints="NO" id="oh2-2M-M5b">
+                    <rect key="frame" x="36.333333333333343" y="409" width="321" height="221"/>
+                </imageView>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="請輸入您的電話號碼" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ts-NS-d85">
+                    <rect key="frame" x="107.33333333333331" y="331" width="250" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+886" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQD-pd-3SF">
-                    <rect key="frame" x="69" y="218" width="77" height="20.333333333333343"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6YZ-KU-GtZ">
+                    <rect key="frame" x="71.999999999999986" y="767" width="249.66666666666663" height="50"/>
+                    <color key="tintColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="登入"/>
+                    <buttonConfiguration key="configuration" style="plain" title="返回" cornerStyle="capsule">
+                        <backgroundConfiguration key="background" strokeWidth="6">
+                            <color key="strokeColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </backgroundConfiguration>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="returnButtonTapped:" destination="-1" eventType="touchUpInside" id="rrG-8a-mL3"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbT-E4-byj">
+                    <rect key="frame" x="71.999999999999986" y="675" width="249.66666666666663" height="50"/>
+                    <color key="tintColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="登入"/>
+                    <buttonConfiguration key="configuration" style="plain" title="輸入驗證碼" cornerStyle="capsule">
+                        <backgroundConfiguration key="background" strokeWidth="6">
+                            <color key="strokeColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </backgroundConfiguration>
+                    </buttonConfiguration>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4s-JN-2rj">
+                    <rect key="frame" x="71.999999999999986" y="409" width="249.66666666666663" height="50"/>
+                    <color key="tintColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="登入"/>
+                    <buttonConfiguration key="configuration" style="plain" title="獲取驗證碼" cornerStyle="capsule">
+                        <backgroundConfiguration key="background" strokeWidth="6">
+                            <color key="strokeColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </backgroundConfiguration>
+                    </buttonConfiguration>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="綁 定 手 機" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qcd-UF-d2c">
+                    <rect key="frame" x="123.66666666666669" y="238" width="146" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                    <color key="textColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BIND PHONE CALL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ms8-h0-b4G">
+                    <rect key="frame" x="77.666666666666686" y="159" width="260" height="36"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <color key="textColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+886" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwi-a5-Hjs">
+                    <rect key="frame" x="56.333333333333343" y="331" width="62" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sensorText" translatesAutoresizingMaskIntoConstraints="NO" id="Nn5-U2-AWo">
-                    <rect key="frame" x="55" y="339" width="284" height="175"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="輸入您的驗證碼" textAlignment="center" minimumFontSize="21" id="m1X-2D-UcK">
-                    <rect key="frame" x="70" y="411" width="249" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="請輸入您的驗證碼" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s9Y-cW-5Vs">
+                    <rect key="frame" x="71.333333333333314" y="502.66666666666674" width="250" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1Q-Oi-tT1">
-                    <rect key="frame" x="85" y="323" width="222" height="47"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="獲取驗證碼" cornerStyle="capsule" titleAlignment="trailing">
-                        <backgroundConfiguration key="background" strokeWidth="4">
-                            <color key="strokeColor" red="0.69411766529999996" green="0.1607843041" blue="0.1725490093" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        </backgroundConfiguration>
-                        <color key="baseForegroundColor" red="0.69411766529999996" green="0.1607843041" blue="0.1725490093" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    </buttonConfiguration>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mXN-fE-FxM">
-                    <rect key="frame" x="85" y="655" width="222" height="47"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="輸入驗證碼" cornerStyle="capsule" titleAlignment="trailing">
-                        <backgroundConfiguration key="background" strokeWidth="4">
-                            <color key="strokeColor" red="0.69411766529999996" green="0.1607843041" blue="0.1725490093" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        </backgroundConfiguration>
-                        <color key="baseForegroundColor" red="0.69411766529999996" green="0.1607843041" blue="0.1725490093" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    </buttonConfiguration>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vuh-b0-yLy">
-                    <rect key="frame" x="85" y="737" width="222" height="47"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="返回" cornerStyle="capsule" titleAlignment="trailing">
-                        <backgroundConfiguration key="background" strokeWidth="4">
-                            <color key="strokeColor" red="0.69411766529999996" green="0.1607843041" blue="0.1725490093" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        </backgroundConfiguration>
-                        <color key="baseForegroundColor" red="0.69411766529999996" green="0.1607843041" blue="0.1725490093" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    </buttonConfiguration>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="64.885496183206101" y="20.422535211267608"/>
+            <constraints>
+                <constraint firstItem="Qcd-UF-d2c" firstAttribute="height" secondItem="Ms8-h0-b4G" secondAttribute="height" multiplier="0.805556" id="4bz-c8-buH"/>
+                <constraint firstItem="Qcd-UF-d2c" firstAttribute="top" secondItem="Ms8-h0-b4G" secondAttribute="bottom" constant="43" id="5Ie-WI-HGq"/>
+                <constraint firstItem="oh2-2M-M5b" firstAttribute="top" secondItem="E4s-JN-2rj" secondAttribute="bottom" constant="-50" id="5bN-Su-eRi"/>
+                <constraint firstItem="oh2-2M-M5b" firstAttribute="leading" secondItem="s9Y-cW-5Vs" secondAttribute="trailing" constant="-285" id="6ca-K4-PGz"/>
+                <constraint firstItem="6YZ-KU-GtZ" firstAttribute="height" secondItem="Qcd-UF-d2c" secondAttribute="height" multiplier="1.72414" id="7Iz-Ev-Ug5"/>
+                <constraint firstItem="8ie-Ts-o75" firstAttribute="height" secondItem="Qcd-UF-d2c" secondAttribute="height" multiplier="7.62069" id="7iF-dq-jgd"/>
+                <constraint firstItem="E4s-JN-2rj" firstAttribute="width" secondItem="8ie-Ts-o75" secondAttribute="width" multiplier="0.777778" id="8Cc-BI-9BZ"/>
+                <constraint firstItem="Qcd-UF-d2c" firstAttribute="width" secondItem="Ms8-h0-b4G" secondAttribute="width" multiplier="0.613445" constant="-13.495798319327719" id="9lQ-PZ-0HS"/>
+                <constraint firstItem="6YZ-KU-GtZ" firstAttribute="centerX" secondItem="Qcd-UF-d2c" secondAttribute="centerX" id="BnV-Xc-xZb"/>
+                <constraint firstItem="oh2-2M-M5b" firstAttribute="height" secondItem="E4s-JN-2rj" secondAttribute="height" multiplier="4.42" id="G1w-Cf-Zvl"/>
+                <constraint firstItem="oh2-2M-M5b" firstAttribute="width" secondItem="E4s-JN-2rj" secondAttribute="width" multiplier="1.28571" id="HnL-st-Go9"/>
+                <constraint firstItem="pbT-E4-byj" firstAttribute="height" secondItem="6YZ-KU-GtZ" secondAttribute="height" id="KwU-m6-7Oz"/>
+                <constraint firstItem="GFm-3Y-zgk" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.890845" id="LD2-oA-1ie"/>
+                <constraint firstItem="Qcd-UF-d2c" firstAttribute="centerX" secondItem="Ms8-h0-b4G" secondAttribute="centerX" constant="-10.999999999999972" id="MNR-NQ-fK9"/>
+                <constraint firstItem="8ie-Ts-o75" firstAttribute="top" secondItem="Qcd-UF-d2c" secondAttribute="bottom" constant="-29" id="Nfe-1U-eiq"/>
+                <constraint firstItem="8ie-Ts-o75" firstAttribute="top" secondItem="1ts-NS-d85" secondAttribute="bottom" constant="-127" id="Qzd-kq-OTP"/>
+                <constraint firstItem="s9Y-cW-5Vs" firstAttribute="centerY" secondItem="oh2-2M-M5b" secondAttribute="centerY" id="RZG-qw-oSK"/>
+                <constraint firstItem="kwi-a5-Hjs" firstAttribute="height" secondItem="8ie-Ts-o75" secondAttribute="height" multiplier="0.153846" id="SbD-Wg-GIG"/>
+                <constraint firstItem="1ts-NS-d85" firstAttribute="width" secondItem="8ie-Ts-o75" secondAttribute="width" multiplier="0.778816" id="TLs-io-xMY"/>
+                <constraint firstItem="1ts-NS-d85" firstAttribute="height" secondItem="8ie-Ts-o75" secondAttribute="height" multiplier="0.153846" id="Vw8-Mi-Q5a"/>
+                <constraint firstItem="E4s-JN-2rj" firstAttribute="top" secondItem="8ie-Ts-o75" secondAttribute="bottom" constant="-50" id="X9n-Ya-Lua"/>
+                <constraint firstItem="GFm-3Y-zgk" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="XsN-fb-oar"/>
+                <constraint firstItem="oh2-2M-M5b" firstAttribute="centerX" secondItem="E4s-JN-2rj" secondAttribute="centerX" id="aY8-Kb-q3i"/>
+                <constraint firstItem="s9Y-cW-5Vs" firstAttribute="height" secondItem="oh2-2M-M5b" secondAttribute="height" multiplier="0.153846" id="ac0-uJ-cf2"/>
+                <constraint firstItem="pbT-E4-byj" firstAttribute="centerX" secondItem="6YZ-KU-GtZ" secondAttribute="centerX" id="add-5F-J5l"/>
+                <constraint firstItem="kwi-a5-Hjs" firstAttribute="leading" secondItem="8ie-Ts-o75" secondAttribute="leading" constant="20" id="aoE-eV-Q7n"/>
+                <constraint firstItem="8ie-Ts-o75" firstAttribute="centerX" secondItem="Qcd-UF-d2c" secondAttribute="centerX" id="dce-Zx-2aa"/>
+                <constraint firstItem="kwi-a5-Hjs" firstAttribute="width" secondItem="8ie-Ts-o75" secondAttribute="width" multiplier="0.193146" id="ddz-BI-eQ1"/>
+                <constraint firstItem="s9Y-cW-5Vs" firstAttribute="width" secondItem="oh2-2M-M5b" secondAttribute="width" multiplier="0.778816" id="epO-23-IdZ"/>
+                <constraint firstItem="6YZ-KU-GtZ" firstAttribute="width" secondItem="Qcd-UF-d2c" secondAttribute="width" multiplier="1.71005" id="g1G-yz-eN8"/>
+                <constraint firstItem="E4s-JN-2rj" firstAttribute="centerX" secondItem="8ie-Ts-o75" secondAttribute="centerX" id="g8S-ou-Z1w"/>
+                <constraint firstItem="Ms8-h0-b4G" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.605598" constant="22" id="hIL-5Z-LcF"/>
+                <constraint firstItem="6YZ-KU-GtZ" firstAttribute="top" secondItem="pbT-E4-byj" secondAttribute="bottom" constant="42" id="iIa-k6-DOc"/>
+                <constraint firstItem="GFm-3Y-zgk" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" constant="-21" id="k8p-hh-rU4"/>
+                <constraint firstItem="GFm-3Y-zgk" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="lN4-b8-1ZM"/>
+                <constraint firstItem="Ms8-h0-b4G" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.0422535" id="nO7-pd-n95"/>
+                <constraint firstItem="pbT-E4-byj" firstAttribute="width" secondItem="6YZ-KU-GtZ" secondAttribute="width" id="qJu-hI-XKe"/>
+                <constraint firstItem="Ms8-h0-b4G" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" constant="11.166666666666657" id="t7Y-tW-Xlg"/>
+                <constraint firstItem="E4s-JN-2rj" firstAttribute="height" secondItem="8ie-Ts-o75" secondAttribute="height" multiplier="0.226244" id="tc3-SH-si6"/>
+                <constraint firstItem="8ie-Ts-o75" firstAttribute="width" secondItem="Qcd-UF-d2c" secondAttribute="width" multiplier="2.19863" id="uQg-wf-YTV"/>
+                <constraint firstItem="8ie-Ts-o75" firstAttribute="top" secondItem="kwi-a5-Hjs" secondAttribute="bottom" constant="-127" id="wdV-t9-pe0"/>
+                <constraint firstItem="6YZ-KU-GtZ" firstAttribute="top" secondItem="Qcd-UF-d2c" secondAttribute="bottom" constant="500" id="zKm-4t-LCG"/>
+                <constraint firstItem="Ms8-h0-b4G" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="41" id="zgM-iU-f4n"/>
+                <constraint firstItem="1ts-NS-d85" firstAttribute="trailing" secondItem="8ie-Ts-o75" secondAttribute="trailing" id="zgd-LX-bjz"/>
+            </constraints>
+            <point key="canvasLocation" x="23.664122137404579" y="-12.67605633802817"/>
         </view>
     </objects>
     <resources>

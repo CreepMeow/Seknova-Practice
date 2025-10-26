@@ -1,14 +1,14 @@
 //
 //  ForgetViewController.swift
-//  Seknova
+//  Seknova-Practice
 //
-//  Created by imac-3282 on 2025/10/17.
+//  Created by imac-2156 on 2025/10/1.
 //
 
 import UIKit
 
 class ForgetViewController: UIViewController {
-    
+
     // MARK: - IBOutlet
     
     
@@ -29,7 +29,7 @@ class ForgetViewController: UIViewController {
     // MARK: - IBAction
     
     @IBAction func sentButtonTapped(_ sender: Any) {
-        let ResetPwdVC = ResetViewController(nibName: "ResetPwdViewController", bundle: nil)
+        let ResetPwdVC = ResetPwdViewController(nibName: "ResetPwdViewController", bundle: nil)
         self.navigationController?.pushViewController(ResetPwdVC, animated: true)
     }
 }

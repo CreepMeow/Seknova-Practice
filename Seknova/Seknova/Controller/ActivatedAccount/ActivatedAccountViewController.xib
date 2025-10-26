@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ActivatedAccountViewController" customModule="Seknova" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ActivatedAccountViewController" customModule="Seknova_Practice" customModuleProvider="target">
             <connections>
                 <outlet property="btnNext" destination="OLa-sa-EwA" id="L07-Cm-7fA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -20,19 +20,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.25" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="VER-WJ-Ubn">
-                    <rect key="frame" x="-21" y="71.666666666666686" width="393" height="759"/>
+                    <rect key="frame" x="-21" y="59" width="393" height="759"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Seknova" translatesAutoresizingMaskIntoConstraints="NO" id="bKM-e9-rNj">
-                    <rect key="frame" x="252" y="71.666666666666671" width="120" height="64.000000000000014"/>
+                    <rect key="frame" x="252" y="59" width="120" height="64"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請到信箱點選認證信開通帳號" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edQ-Su-zUR">
-                    <rect key="frame" x="-3.6666666666666572" y="437.66666666666669" width="400.33333333333326" height="27"/>
+                    <rect key="frame" x="-3.6666666666666572" y="425" width="400.33333333333326" height="27"/>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ama-sl-Wl4">
-                    <rect key="frame" x="71.666666666666671" y="482.66666666666669" width="249.66666666666663" height="50.000000000000057"/>
+                    <rect key="frame" x="71.666666666666671" y="470" width="249.66666666666663" height="50"/>
                     <color key="tintColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="登入"/>
@@ -43,19 +43,19 @@
                     </buttonConfiguration>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開  通  帳  號" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ycz-ui-L8R">
-                    <rect key="frame" x="123.66666666666669" y="191.66666666666666" width="146" height="29"/>
+                    <rect key="frame" x="123.66666666666669" y="179" width="146" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                     <color key="textColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activated Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vag-Rx-Xeg">
-                    <rect key="frame" x="77.666666666666686" y="112.66666666666669" width="238" height="36"/>
+                    <rect key="frame" x="77.666666666666686" y="100" width="238" height="36"/>
                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                     <color key="textColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLa-sa-EwA">
-                    <rect key="frame" x="71.333333333333329" y="780.66666666666663" width="250.33333333333337" height="50"/>
+                    <rect key="frame" x="71.333333333333329" y="768" width="250.33333333333337" height="50"/>
                     <color key="tintColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="登入"/>
@@ -65,7 +65,7 @@
                         </backgroundConfiguration>
                     </buttonConfiguration>
                     <connections>
-                        <action selector="nextButtonTapped:" destination="-1" eventType="touchUpInside" id="bW2-9f-S81"/>
+                        <action selector="nextButtonTapped:" destination="-1" eventType="touchUpInside" id="JgF-fL-oUg"/>
                     </connections>
                 </button>
             </subviews>

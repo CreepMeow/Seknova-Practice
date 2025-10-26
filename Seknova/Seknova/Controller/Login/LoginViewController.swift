@@ -1,44 +1,51 @@
 //
 //  LoginViewController.swift
-//  Seknova
+//  Seknova-Practice
 //
-//  Created by imac-3282 on 2025/9/24.
+//  Created by imac-2156 on 2025/9/24.
 //
-
 import UIKit
-
 class LoginViewController: UIViewController {
+
+    
     
     // MARK: - IBOutlet
-    @IBOutlet weak var ForgetPasswordbtn: UIButton!
-    @IBOutlet weak var Registerbtn: UIButton!
-    @IBOutlet weak var Loginbtn: UIButton!
-    @IBOutlet weak var FBLoginbtn: UIButton!
-    @IBOutlet weak var AppleLoginbtn: UIButton!
-    @IBOutlet weak var GoogleLoginbtn: UIButton!
-    @IBOutlet weak var txfUser: UITextField!
+    
+    @IBOutlet weak var btnLogin: UIButton!
+    @IBOutlet weak var btnFacebook: UIButton!
+    @IBOutlet weak var btnApple: UIButton!
+    @IBOutlet weak var btnGoogle: UIButton!
+    @IBOutlet weak var btnForget: UIButton!
+    @IBOutlet weak var btnSignUp: UIButton!
+    @IBOutlet weak var txfUserId: UITextField!
     @IBOutlet weak var txfPassword: UITextField!
-    // MARK: - Proprtty
+    
+    // MARK: - Variables
+    
     
     // MARK: - LifeCycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             if let defaults = UserDefaults.standard.value(forKey: .userEmail) as? String {
-                txfUser.text = defaults
+                txfUserId.text = defaults
                 txfPassword.text = UserDefaults.standard.value(forKey: .userPassword) as? String
             }
         }
-    // MARK: - UI Setting
+    
+    // MARK: - UI Settings
     func setUI() {
         navigationItem.title = "Login"
     }
-    // MARK: - IBAcion
+    
+
+    
+    // MARK: - IBAction
     @IBAction func btnSignUpTapped(_ sender: UIButton) {
         let SignUpVC = SignUpViewController(nibName: "SignUpViewController", bundle: nil)
         SignUpVC.delegate = self
@@ -49,11 +56,12 @@ class LoginViewController: UIViewController {
     let ForgetVC = ForgetViewController(nibName: "ForgetViewController", bundle: nil)
         ForgetVC.delegate = self
         self.navigationController?.pushViewController(ForgetVC, animated: true)
-
+        
+        
     }
     
     @IBAction func btnLoginTapped(_ sender: Any) {
-         guard let account = txfUser.text, !account.isEmpty,
+         guard let account = txfUserId.text, !account.isEmpty,
                let password = txfPassword.text, !password.isEmpty else {
              return
          }
@@ -63,7 +71,7 @@ class LoginViewController: UIViewController {
 
          if isFirstLogin {
              let privateAgreeVC = PrivateAgreeViewController(nibName: "PrivateAgreeViewController", bundle: nil)
-             //privateAgreeVC.userAccount = account // 傳遞帳號資訊
+             privateAgreeVC.userAccount = account // 傳遞帳號資訊
              privateAgreeVC.modalPresentationStyle = .fullScreen
              present(privateAgreeVC, animated: true)
          } else {
@@ -74,18 +82,21 @@ class LoginViewController: UIViewController {
              present(navController, animated: true)
          }
     }
-
-    // MARK: - Function
+    
+    
+    
 }
+
 // MARK: - Extensions
 extension LoginViewController: SignUpDelegate {
     func didTappedSignUp() {  // 移除參數
         print("註冊按鈕被點擊")
     }
 }
+
 extension LoginViewController: ForgetDelegate {
     func didTappedForget() {
         print("忘記密碼按鈕被點擊")
     }
 }
-
+// MARK: - Protocol

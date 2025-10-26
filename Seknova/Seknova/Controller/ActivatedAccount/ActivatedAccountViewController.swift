@@ -8,8 +8,10 @@
 import UIKit
 
 class ActivatedAccountViewController: UIViewController {
-    
+
     // MARK: - IBOutlet
+    
+    
     
     @IBOutlet weak var btnNext: UIButton!
     // MARK: - Variables
@@ -25,6 +27,7 @@ class ActivatedAccountViewController: UIViewController {
     
     
     // MARK: - IBAction
+    
     @IBAction func nextButtonTapped(_ sender: Any) {
         
         if let navigationController = self.navigationController {
@@ -34,7 +37,7 @@ class ActivatedAccountViewController: UIViewController {
                 if let savedEmail = defaults.value(forKey: .userEmail) as? String,
                    let savedPassword = defaults.value(forKey: .userPassword) as? String {
                     DispatchQueue.main.async {
-                        loginVC.txfUser.text = savedEmail
+                        loginVC.txfUserId.text = savedEmail
                         loginVC.txfPassword.text = savedPassword
                     }
                 }
@@ -45,6 +48,7 @@ class ActivatedAccountViewController: UIViewController {
 // MARK: - Extensions
 
 
+// MARK: - Protocol
 protocol ActivatedAccountDelegate: AnyObject {
     func didTappedActivatedAccount()
 }

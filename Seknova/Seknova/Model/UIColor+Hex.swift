@@ -1,11 +1,9 @@
 //
-//  UIColoer.swift
-//  Seknova
+//  UIColor+Hex.swift
+//  Seknova-Practice
 //
-//  Created by imac-3282 on 2025/10/14.
+//  Created by imac-2156 on 2025/10/7.
 //
-
-import Foundation
 
 import UIKit
 

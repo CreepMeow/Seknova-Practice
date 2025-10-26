@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B0D4F77A2EAEA1AF00D1A969 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B0D4F7792EAEA1AF00D1A969 /* RealmSwift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		B0BB1C2B2E83C0B70047C903 /* Seknova.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seknova.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0D4F77A2EAEA1AF00D1A969 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +75,7 @@
 			);
 			name = Seknova;
 			packageProductDependencies = (
+				B0D4F7792EAEA1AF00D1A969 /* RealmSwift */,
 			);
 			productName = Seknova;
 			productReference = B0BB1C2B2E83C0B70047C903 /* Seknova.app */;
@@ -82,6 +88,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
@@ -99,6 +108,9 @@
 			);
 			mainGroup = B0C174492E83C0060006EE13;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B0D4F7762EAEA1AF00D1A969 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B0C174492E83C0060006EE13;
 			projectDirPath = "";
@@ -327,6 +339,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B0D4F7762EAEA1AF00D1A969 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B0D4F7792EAEA1AF00D1A969 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0D4F7762EAEA1AF00D1A969 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B0C1744A2E83C0060006EE13 /* Project object */;
 }
