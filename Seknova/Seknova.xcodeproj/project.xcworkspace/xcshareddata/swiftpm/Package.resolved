@@ -1,6 +1,15 @@
 {
-  "originHash" : "182db11c87d1734fe53a6366b674339f70901a93290bd85def29b63e25e34c43",
+  "originHash" : "70a55ff379b24902b6542c188fbac85970978b278c9d420aec8cdb77780a6d51",
   "pins" : [
+    {
+      "identity" : "charts?source=post_page-----f01cd2e0ffc5---------------------------------------",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ChartsOrg/Charts?source=post_page-----f01cd2e0ffc5---------------------------------------",
+      "state" : {
+        "revision" : "dd9c72e3d7e751e769971092a6bd72d39198ae63",
+        "version" : "5.1.0"
+      }
+    },
     {
       "identity" : "realm-core",
       "kind" : "remoteSourceControl",
@@ -13,7 +22,7 @@
     {
       "identity" : "realm-swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/realm/realm-swift",
+      "location" : "https://github.com/realm/realm-swift.git",
       "state" : {
         "branch" : "master",
         "revision" : "c22f9303d446fc3c044e4c151ed19597464b6bd7"

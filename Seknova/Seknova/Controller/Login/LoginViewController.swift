@@ -2,7 +2,7 @@
 //  LoginViewController.swift
 //  Seknova-Practice
 //
-//  Created by imac-2156 on 2025/9/24.
+//  Created by imac-2627 on 2025/9/24.
 //
 import UIKit
 class LoginViewController: UIViewController {
@@ -41,6 +41,7 @@ class LoginViewController: UIViewController {
     // MARK: - UI Settings
     func setUI() {
         navigationItem.title = "Login"
+        txfPassword.isSecureTextEntry = true
     }
     
 

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="Seknova" customModuleProvider="target">
+            <connections>
+                <outlet property="mainbiew" destination="28o-IE-TAT" id="bdO-08-jQW"/>
+                <outlet property="tarbar" destination="dNL-kx-0hE" id="ZmG-aG-zu4"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="28o-IE-TAT">
+                    <rect key="frame" x="0.0" y="-68" width="393" height="766.66666666666663"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNL-kx-0hE" customClass="TarBarView" customModule="Seknova" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="698.66666666666663" width="393" height="85.333333333333371"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="28o-IE-TAT" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.9" id="1aW-cb-jpu"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dNL-kx-0hE" secondAttribute="bottom" id="3IF-p6-Bv5"/>
+                <constraint firstItem="dNL-kx-0hE" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="4yI-Pn-qVQ"/>
+                <constraint firstItem="dNL-kx-0hE" firstAttribute="top" secondItem="28o-IE-TAT" secondAttribute="bottom" id="AMV-Jh-006"/>
+                <constraint firstItem="dNL-kx-0hE" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="DR0-tG-EB0"/>
+                <constraint firstItem="dNL-kx-0hE" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.1" id="SMi-dl-cOM"/>
+                <constraint firstItem="28o-IE-TAT" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="adE-tf-dAU"/>
+                <constraint firstItem="28o-IE-TAT" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="nzP-zD-B09"/>
+            </constraints>
+            <point key="canvasLocation" x="75.572519083969468" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

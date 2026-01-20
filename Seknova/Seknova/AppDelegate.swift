@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Seknova-Practice
 //
-//  Created by imac-2156 on 2025/9/24.
+//  Created by imac-2627 on 2025/9/24.
 //
 
 import UIKit

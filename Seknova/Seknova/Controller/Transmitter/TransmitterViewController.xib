@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TransmitterViewController" customModule="Seknova" customModuleProvider="target">
+            <connections>
+                <outlet property="btnBack" destination="ocV-Ku-REN" id="Hfl-fK-FB3"/>
+                <outlet property="btnQR" destination="mqJ-pK-ZSz" id="0P8-hv-vx6"/>
+                <outlet property="btnText" destination="vcR-h1-6PG" id="vox-GU-z3k"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.25" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background5_Nav1" translatesAutoresizingMaskIntoConstraints="NO" id="DfI-Ip-vPI">
+                    <rect key="frame" x="0.0" y="71.666666666666686" width="393" height="759"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CGMTransmitterB" translatesAutoresizingMaskIntoConstraints="NO" id="etS-Nv-PAV">
+                    <rect key="frame" x="46" y="360.66666666666669" width="301" height="181.00000000000006"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcR-h1-6PG">
+                    <rect key="frame" x="81" y="642" width="230" height="45"/>
+                    <color key="tintColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="登入"/>
+                    <buttonConfiguration key="configuration" style="plain" title="文字輸入" cornerStyle="capsule">
+                        <backgroundConfiguration key="background" strokeWidth="6">
+                            <color key="strokeColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </backgroundConfiguration>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="btnTextInputTapped:" destination="-1" eventType="touchUpInside" id="gEL-6K-GbV"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocV-Ku-REN">
+                    <rect key="frame" x="81" y="709" width="230" height="45"/>
+                    <color key="tintColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="登入"/>
+                    <buttonConfiguration key="configuration" style="plain" title="返回" cornerStyle="capsule">
+                        <backgroundConfiguration key="background" strokeWidth="6">
+                            <color key="strokeColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </backgroundConfiguration>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="btnBackTapped:" destination="-1" eventType="touchUpInside" id="nsZ-di-z3Q"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CGMTransmitter" translatesAutoresizingMaskIntoConstraints="NO" id="Cod-di-NWO">
+                    <rect key="frame" x="72" y="167" width="249" height="175"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqJ-pK-ZSz">
+                    <rect key="frame" x="81" y="573" width="230" height="45"/>
+                    <color key="tintColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="登入"/>
+                    <buttonConfiguration key="configuration" style="plain" title="QR掃描" cornerStyle="capsule">
+                        <backgroundConfiguration key="background" strokeWidth="6">
+                            <color key="strokeColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </backgroundConfiguration>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="btnQRScanTapped:" destination="-1" eventType="touchUpInside" id="aCm-cZ-f50"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vcR-h1-6PG" firstAttribute="height" secondItem="ocV-Ku-REN" secondAttribute="height" id="4fI-JE-KhD"/>
+                <constraint firstItem="ocV-Ku-REN" firstAttribute="bottom" secondItem="DfI-Ip-vPI" secondAttribute="bottom" constant="-76.666666666666742" id="5fL-bT-LGv"/>
+                <constraint firstItem="Cod-di-NWO" firstAttribute="width" secondItem="etS-Nv-PAV" secondAttribute="width" multiplier="0.827243" id="9SC-kL-1Bh"/>
+                <constraint firstItem="Cod-di-NWO" firstAttribute="centerX" secondItem="etS-Nv-PAV" secondAttribute="centerX" id="9vc-29-KCR"/>
+                <constraint firstItem="etS-Nv-PAV" firstAttribute="width" secondItem="DfI-Ip-vPI" secondAttribute="width" multiplier="0.765903" id="A5a-m2-lUp"/>
+                <constraint firstItem="ocV-Ku-REN" firstAttribute="top" secondItem="vcR-h1-6PG" secondAttribute="bottom" constant="22" id="FbP-DN-zzj"/>
+                <constraint firstItem="vcR-h1-6PG" firstAttribute="top" secondItem="mqJ-pK-ZSz" secondAttribute="bottom" constant="24" id="ISh-B2-ssg"/>
+                <constraint firstItem="mqJ-pK-ZSz" firstAttribute="height" secondItem="vcR-h1-6PG" secondAttribute="height" id="JQw-EN-Kb4"/>
+                <constraint firstItem="DfI-Ip-vPI" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="NUM-Lc-UA6"/>
+                <constraint firstItem="mqJ-pK-ZSz" firstAttribute="width" secondItem="vcR-h1-6PG" secondAttribute="width" id="Sxb-5o-jYS"/>
+                <constraint firstItem="ocV-Ku-REN" firstAttribute="width" secondItem="DfI-Ip-vPI" secondAttribute="width" multiplier="0.763359" constant="-70.000087000000008" id="ZJO-da-TZF"/>
+                <constraint firstItem="DfI-Ip-vPI" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="aCJ-19-DHm"/>
+                <constraint firstItem="mqJ-pK-ZSz" firstAttribute="centerX" secondItem="vcR-h1-6PG" secondAttribute="centerX" id="bch-yM-w9d"/>
+                <constraint firstItem="Cod-di-NWO" firstAttribute="height" secondItem="etS-Nv-PAV" secondAttribute="height" multiplier="0.965909" id="hRr-p5-Ced"/>
+                <constraint firstItem="etS-Nv-PAV" firstAttribute="centerX" secondItem="DfI-Ip-vPI" secondAttribute="centerX" id="nGg-p1-QcE"/>
+                <constraint firstItem="DfI-Ip-vPI" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.890845" id="ovM-55-j8k"/>
+                <constraint firstItem="vcR-h1-6PG" firstAttribute="centerX" secondItem="ocV-Ku-REN" secondAttribute="centerX" id="rYO-Wb-aHc"/>
+                <constraint firstItem="DfI-Ip-vPI" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="sX7-1e-06p"/>
+                <constraint firstItem="etS-Nv-PAV" firstAttribute="height" secondItem="DfI-Ip-vPI" secondAttribute="height" multiplier="0.231884" constant="5" id="ssU-7e-znO"/>
+                <constraint firstItem="DfI-Ip-vPI" firstAttribute="leading" secondItem="ocV-Ku-REN" secondAttribute="trailing" constant="-311" id="ufD-zo-bRI"/>
+                <constraint firstItem="etS-Nv-PAV" firstAttribute="top" secondItem="Cod-di-NWO" secondAttribute="bottom" constant="18.666666666666686" id="vUp-4A-Uwp"/>
+                <constraint firstItem="etS-Nv-PAV" firstAttribute="centerY" secondItem="DfI-Ip-vPI" secondAttribute="centerY" id="vVu-hS-FXg"/>
+                <constraint firstItem="vcR-h1-6PG" firstAttribute="width" secondItem="ocV-Ku-REN" secondAttribute="width" id="wXZ-Cz-oKc"/>
+                <constraint firstItem="ocV-Ku-REN" firstAttribute="height" secondItem="DfI-Ip-vPI" secondAttribute="height" multiplier="0.0592885" id="yF9-h7-qcd"/>
+            </constraints>
+            <point key="canvasLocation" x="130.53435114503816" y="-12.67605633802817"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Background5_Nav1" width="1126" height="2437"/>
+        <image name="CGMTransmitter" width="224" height="177"/>
+        <image name="CGMTransmitterB" width="214" height="192"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

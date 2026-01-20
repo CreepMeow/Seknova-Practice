@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="Seknova" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="Seknova_Practice" customModuleProvider="target">
             <connections>
                 <outlet property="btnCheck" destination="Ybt-g9-YCc" id="GcE-5s-UvX"/>
                 <outlet property="btnCountry" destination="wGH-sE-paH" id="Z5M-Ae-Nxf"/>
@@ -27,46 +27,46 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.25" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="TOq-Xa-8Y4">
-                    <rect key="frame" x="-21" y="71.666666666666686" width="393" height="759"/>
+                    <rect key="frame" x="-21" y="59" width="393" height="759"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sensorText" translatesAutoresizingMaskIntoConstraints="NO" id="5Ar-Uc-ysA">
-                    <rect key="frame" x="36" y="155.66666666666663" width="321" height="221"/>
+                    <rect key="frame" x="36" y="143" width="321" height="221"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sensorText" translatesAutoresizingMaskIntoConstraints="NO" id="zpI-sq-Ov2">
-                    <rect key="frame" x="36" y="251.66666666666663" width="321" height="213"/>
+                    <rect key="frame" x="36" y="239" width="321" height="213"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sensorText" translatesAutoresizingMaskIntoConstraints="NO" id="P8y-tH-e1y">
-                    <rect key="frame" x="36" y="202" width="321" height="216"/>
+                    <rect key="frame" x="36" y="189.66666666666663" width="321" height="216"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TextFieldBackground3" translatesAutoresizingMaskIntoConstraints="NO" id="Kga-Ny-qFw">
-                    <rect key="frame" x="43.666666666666657" y="200.66666666666663" width="306" height="219"/>
+                    <rect key="frame" x="43.666666666666657" y="188" width="306" height="219"/>
                 </imageView>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密碼（8-16字元,需包含大小寫英文與字母）" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4GN-p9-DGP">
-                    <rect key="frame" x="97" y="292.66666666666669" width="250" height="34"/>
+                    <rect key="frame" x="97" y="280" width="250" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="再一次輸入密碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N8U-bW-Qms">
-                    <rect key="frame" x="97" y="344.66666666666669" width="250" height="34"/>
+                    <rect key="frame" x="97" y="332" width="250" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="電子信箱" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8XQ-D1-yMV">
-                    <rect key="frame" x="97" y="244.66666666666663" width="250" height="34"/>
+                    <rect key="frame" x="97" y="232" width="250" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail" translatesAutoresizingMaskIntoConstraints="NO" id="gJ2-vB-UgP">
-                    <rect key="frame" x="59" y="251.66666666666663" width="30" height="20"/>
+                    <rect key="frame" x="59" y="239" width="30" height="20"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="xCY-eD-jYT">
-                    <rect key="frame" x="54" y="294.66666666666669" width="40" height="30"/>
+                    <rect key="frame" x="54" y="282" width="40" height="30"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="Qcz-Fv-1AI">
-                    <rect key="frame" x="54" y="346.66666666666669" width="40" height="30"/>
+                    <rect key="frame" x="54" y="334" width="40" height="30"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGH-sE-paH">
-                    <rect key="frame" x="16" y="412.66666666666669" width="361" height="77"/>
+                    <rect key="frame" x="16" y="400" width="361" height="77"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="pickerBg"/>
                     <connections>
@@ -74,7 +74,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ybt-g9-YCc">
-                    <rect key="frame" x="43.666666666666664" y="483.66666666666669" width="24.999999999999993" height="25"/>
+                    <rect key="frame" x="43.666666666666664" y="471" width="24.999999999999993" height="25"/>
                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="Button"/>
@@ -83,19 +83,19 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqE-1w-jlF">
-                    <rect key="frame" x="59" y="427.66666666666669" width="171" height="47"/>
+                    <rect key="frame" x="59" y="415" width="171" height="47"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我已閱讀並同意會員協議的" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxq-QI-7Jm">
-                    <rect key="frame" x="70" y="487.66666666666669" width="167" height="17"/>
+                    <rect key="frame" x="70" y="475" width="167" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zE1-Ap-wn5">
-                    <rect key="frame" x="228" y="481" width="80" height="30"/>
+                    <rect key="frame" x="233" y="468.66666666666669" width="80" height="30"/>
                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="Button"/>
@@ -104,7 +104,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9E-Fd-Rl3">
-                    <rect key="frame" x="46.666666666666657" y="785.66666666666663" width="300" height="45"/>
+                    <rect key="frame" x="46.666666666666657" y="773" width="300" height="45"/>
                     <color key="tintColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="登入"/>
@@ -118,19 +118,19 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REGISTER ACCOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T03-Q8-nHD">
-                    <rect key="frame" x="82.666666666666686" y="126.66666666666669" width="228" height="29"/>
+                    <rect key="frame" x="82.666666666666686" y="114" width="228" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="textColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="註  冊  帳  號" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLt-Qd-XOs">
-                    <rect key="frame" x="134.66666666666666" y="163.66666666666666" width="123.99999999999997" height="29"/>
+                    <rect key="frame" x="134.66666666666666" y="151" width="123.99999999999997" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="textColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Seknova" translatesAutoresizingMaskIntoConstraints="NO" id="8Tu-1m-Alq">
-                    <rect key="frame" x="252" y="71.666666666666671" width="120" height="64.000000000000014"/>
+                    <rect key="frame" x="252" y="59" width="120" height="64"/>
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -161,7 +161,7 @@
                 <constraint firstItem="8Tu-1m-Alq" firstAttribute="leading" secondItem="TOq-Xa-8Y4" secondAttribute="trailing" constant="-120" id="KMm-Az-1NX"/>
                 <constraint firstItem="Kga-Ny-qFw" firstAttribute="top" secondItem="5Ar-Uc-ysA" secondAttribute="bottom" constant="-176" id="KpO-4T-q2Q"/>
                 <constraint firstItem="zE1-Ap-wn5" firstAttribute="width" secondItem="Vxq-QI-7Jm" secondAttribute="width" multiplier="0.305389" constant="29" id="Ldg-Lu-i3v"/>
-                <constraint firstItem="zE1-Ap-wn5" firstAttribute="leading" secondItem="Vxq-QI-7Jm" secondAttribute="trailing" constant="-9" id="MQv-tr-tRz"/>
+                <constraint firstItem="zE1-Ap-wn5" firstAttribute="leading" secondItem="Vxq-QI-7Jm" secondAttribute="trailing" constant="-4" id="MQv-tr-tRz"/>
                 <constraint firstItem="gJ2-vB-UgP" firstAttribute="width" secondItem="Kga-Ny-qFw" secondAttribute="width" multiplier="0.0980392" id="O7m-Bb-8IW"/>
                 <constraint firstItem="xCY-eD-jYT" firstAttribute="height" secondItem="gJ2-vB-UgP" secondAttribute="height" multiplier="1.5" id="OKt-cs-jY9"/>
                 <constraint firstItem="Qcz-Fv-1AI" firstAttribute="centerX" secondItem="xCY-eD-jYT" secondAttribute="centerX" id="OPl-WT-qEp"/>

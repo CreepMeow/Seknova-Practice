@@ -2,12 +2,13 @@
 //  PersionalInfoViewController.swift
 //  Seknova-Practice
 //
-//  Created by imac-2156 on 2025/10/6.
+//  Created by imac-2627 on 2025/10/7.
 //
 
 import UIKit
+import RealmSwift
 
-class PersionalInfoViewController: UIViewController {
+class PersionalInfoViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: - IBOutlet
     
@@ -51,7 +52,6 @@ class PersionalInfoViewController: UIViewController {
     }
     
     private func setupDatePicker() {
-        // 創建日期選擇器
         datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
@@ -63,10 +63,16 @@ class PersionalInfoViewController: UIViewController {
         dateToolBar.sizeToFit()
         
         let cancelBtn = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelDatePicker))
+        cancelBtn.tintColor = UIColor.black
+        
         let titleBtn = UIBarButtonItem(title: "出生日期", style: .plain, target: nil, action: nil)
-        titleBtn.isEnabled = false
+        titleBtn.tintColor = UIColor.black
+
+        
         let spaceBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
         let doneBtn = UIBarButtonItem(title: "完成", style: .done, target: self, action: #selector(doneDatePicker))
+        doneBtn.tintColor = UIColor.black
         
         dateToolBar.setItems([cancelBtn, spaceBtn, titleBtn, spaceBtn, doneBtn], animated: false)
         
@@ -76,8 +82,147 @@ class PersionalInfoViewController: UIViewController {
         dateTextField.inputAccessoryView = dateToolBar
         view.addSubview(dateTextField)
     }
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "確定", style: .default))
+        present(alert, animated: true)
+    }
     
     // MARK: - IBAction
+    @IBAction func btnNextTapped(_ sender: UIButton) {
+        // 檢查所有必填欄位
+        let personalSection = 0
+        let bodySection = 1
+        let personalCount = persionalInfoItems.count
+        let bodyCount = bodyInfoItems.count
+        for section in 0..<sections.count {
+            let rowCount = section == 0 ? personalCount : bodyCount
+            for row in 0..<rowCount {
+                let indexPath = IndexPath(row: row, section: section)
+                guard let cell = tbvValue.cellForRow(at: indexPath) as? PersionalInfoTableViewCell else { continue }
+                // 地址(0,5)與手機號碼(0,4)非必填
+                if section == 0 && (row == 4 || row == 5) { continue }
+                if section == 0 {
+                    // 個人資訊區段
+                    if row == 2 { // 出生日期
+                        if cell.lbValue.text?.isEmpty ?? true {
+                            showAlert(title: "提醒", message: "請填寫出生日期")
+                            return
+                        }
+                    } else {
+                        if cell.txfValue.text?.isEmpty ?? true {
+                            showAlert(title: "提醒", message: "請填寫\(persionalInfoItems[row])")
+                            return
+                        }
+                    }
+                } else {
+                    // 身體數值區段
+                    if row == 0 || row == 3 || row == 4 || row == 5 {
+                        // 性別、種族、飲酒、抽菸
+                        if cell.lbValue.text?.isEmpty ?? true {
+                            showAlert(title: "提醒", message: "請選擇\(bodyInfoItems[row])")
+                            return
+                        }
+                    } else {
+                        // 身高、體重
+                        if cell.txfValue.text?.isEmpty ?? true {
+                            showAlert(title: "提醒", message: "請填寫\(bodyInfoItems[row])")
+                            return
+                        }
+                        // 檢查是否為整數
+                        if Int(cell.txfValue.text ?? "") == nil {
+                            showAlert(title: "提醒", message: "請輸入正確的\(bodyInfoItems[row]) (整數)")
+                            return
+                        }
+                    }
+                }
+            }
+        }
+        // 所有必填欄位皆有填寫，可進行下一步
+        saveUserInfoToRealm()
+        let AudiovisualTeachingVC = AudiovisualTeachingViewController(nibName: "AudiovisualTeachingViewController", bundle: nil)
+        self.navigationController?.pushViewController(AudiovisualTeachingVC, animated: true)
+        
+    }
+
+    // 儲存資料進 Realm
+    private func saveUserInfoToRealm() {
+        let userInfo = UserInformation()
+        // 個人資訊
+        for row in 0..<persionalInfoItems.count {
+            let indexPath = IndexPath(row: row, section: 0)
+            guard let cell = tbvValue.cellForRow(at: indexPath) as? PersionalInfoTableViewCell else { continue }
+            switch row {
+            case 0:
+                userInfo.firstName = cell.txfValue.text ?? ""
+            case 1:
+                userInfo.lastName = cell.txfValue.text ?? ""
+            case 2:
+                userInfo.birthday = cell.lbValue.text ?? ""
+            case 3:
+                userInfo.email = cell.txfValue.text ?? ""
+            case 4:
+                userInfo.phone = cell.txfValue.text ?? ""
+            case 5:
+                userInfo.address = cell.txfValue.text ?? ""
+            default:
+                break
+            }
+        }
+        // 身體數值
+        for row in 0..<bodyInfoItems.count {
+            let indexPath = IndexPath(row: row, section: 1)
+            guard let cell = tbvValue.cellForRow(at: indexPath) as? PersionalInfoTableViewCell else { continue }
+            switch row {
+            case 0:
+                userInfo.gender = cell.lbValue.text ?? ""
+            case 1:
+                userInfo.height = Int(cell.txfValue.text ?? "0") ?? 0
+            case 2:
+                userInfo.weight = Int(cell.txfValue.text ?? "0") ?? 0
+            case 3:
+                userInfo.race = cell.lbValue.text ?? ""
+            case 4:
+                userInfo.liquor = cell.lbValue.text ?? ""
+            case 5:
+                userInfo.smoke = (cell.lbValue.text == "有")
+            default:
+                break
+            }
+        }
+        // userId 產生方式可依需求調整
+        userInfo.userId = UUID().uuidString
+        // 寫入 Realm
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.add(userInfo, update: .modified)
+            }
+            print("資料已儲存")
+        } catch {
+            print("儲存失敗: \(error.localizedDescription)")
+        }
+    }
+
+    // MARK: - UITextFieldDelegate
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // 只針對身高與體重欄位做整數限制
+        guard let indexPath = indexPathForTextField(textField) else { return true }
+        if indexPath.section == 1 && (indexPath.row == 1 || indexPath.row == 2) {
+            // 僅允許輸入數字
+            let allowed = CharacterSet.decimalDigits
+            if string.rangeOfCharacter(from: allowed.inverted) != nil {
+                return false
+            }
+        }
+        return true
+    }
+    // 取得 textField 對應的 indexPath
+    private func indexPathForTextField(_ textField: UITextField) -> IndexPath? {
+        let point = textField.convert(CGPoint.zero, to: tbvValue)
+        return tbvValue.indexPathForRow(at: point)
+    }
+    
     @objc private func cancelDatePicker() {
         dateTextField.resignFirstResponder()
     }
@@ -94,17 +239,19 @@ class PersionalInfoViewController: UIViewController {
     }
     
     // MARK: - Action Sheet Methods
-    private func showActionSheet(title: String, options: [String], indexPath: IndexPath) {
-        let alertController = UIAlertController(title: title, message: "請選擇", preferredStyle: .actionSheet)
+    private func showActionSheet(title: String?, options: [String], indexPath: IndexPath) {
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         
         for option in options {
             let action = UIAlertAction(title: option, style: .default) { [weak self] _ in
                 self?.handleOptionSelected(option: option, indexPath: indexPath)
             }
+            action.setValue(Color.mainRed, forKey: "titleTextColor")
             alertController.addAction(action)
         }
         
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        cancelAction.setValue(Color.mainRed, forKey: "titleTextColor")
         alertController.addAction(cancelAction)
         
         // 為 iPad 設定 popover
@@ -197,6 +344,7 @@ extension PersionalInfoViewController: UITableViewDataSource, UITableViewDelegat
                 } else if indexPath.row == 2 { // 體重
                     cell.txfValue.keyboardType = .decimalPad
                 }
+                cell.txfValue.delegate = self
             }
         }
         
@@ -216,13 +364,13 @@ extension PersionalInfoViewController: UITableViewDataSource, UITableViewDelegat
         
         switch row {
         case 0: // 性別
-            showActionSheet(title: "性別", options: genderOptions, indexPath: indexPath)
+            showActionSheet(title: nil, options: genderOptions, indexPath: indexPath)
         case 3: // 種族
-            showActionSheet(title: "種族", options: raceOptions, indexPath: indexPath)
+            showActionSheet(title: nil, options: raceOptions, indexPath: indexPath)
         case 4: // 飲酒
-            showActionSheet(title: "飲酒", options: drinkingOptions, indexPath: indexPath)
+            showActionSheet(title: nil, options: drinkingOptions, indexPath: indexPath)
         case 5: // 抽菸
-            showActionSheet(title: "抽菸", options: smokingOptions, indexPath: indexPath)
+            showActionSheet(title: nil, options: smokingOptions, indexPath: indexPath)
         default:
             break
         }
