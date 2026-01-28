@@ -60,7 +60,7 @@ class TransmitterViewController: UIViewController, AVCaptureMetadataOutputObject
         } else {
             // 如果沒有 navigation controller，直接 present
             self.present(navController, animated: true)
-        }	
+        }
     }
     
     // MARK: - UI Settings
@@ -218,13 +218,18 @@ class TransmitterViewController: UIViewController, AVCaptureMetadataOutputObject
     private func saveDeviceIDAndNavigate(_ deviceID: String) {
         // 儲存裝置ID
         UserDefaults.standard.set(deviceID, forKey: "DeviceID")
+        print("=== TransmitterVC: saveDeviceIDAndNavigate 被調用 ===")
+        print("TransmitterVC: DeviceID '\(deviceID)' 已保存")
         
         // 跳轉到 PairingViewController 並設定 delegate
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             let pairingVC = PairingViewController(nibName: "PairingViewController", bundle: nil)
             pairingVC.delegate = self
+            print("TransmitterVC: PairingViewController 已創建，delegate 已設置")
+            print("TransmitterVC: delegate = \(String(describing: pairingVC.delegate))")
             self.navigationController?.pushViewController(pairingVC, animated: true)
+            print("TransmitterVC: PairingViewController push 完成")
         }
     }
     
@@ -255,7 +260,7 @@ extension TransmitterViewController: PairingDelegate {
     func btnPairTapped() {
         print("開始配對，進入 LoadingView")
         let loadingVC = LoadingViewController(nibName: "LoadingViewController", bundle: nil)
-        loadingVC.delegate = self
+        // LoadingViewController 完成後會自動返回到 PairingViewController
         self.navigationController?.pushViewController(loadingVC, animated: true)
     }
     

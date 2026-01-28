@@ -227,7 +227,86 @@ class MainViewController: UIViewController {
     
     @objc private func linkButtonTapped() {
         print("連結按鈕被點擊")
-        // TODO: 實作連結功能
+        checkDeviceStatusAndShowAlert()
+    }
+    
+    // MARK: - Device Status Check
+    private func checkDeviceStatusAndShowAlert() {
+        // 檢查發射器和感測器的啟用狀態
+        let isTransmitterEnabled = UserDefaults.standard.bool(forKey: "TransmitterEnabled")
+        let isSensorEnabled = UserDefaults.standard.bool(forKey: "SensorEnabled")
+        
+        var title: String
+        var message: String
+        var shouldNavigateToSetup = false
+        
+        // 根據不同的狀態組合決定顯示內容和行為
+        if !isTransmitterEnabled && !isSensorEnabled {
+            // 發射器未啟用 ＋ 感測器未啟用
+            title = "發射器未啟用"
+            message = "發射器尚未啟用，請使用者啟用後才可以進一步顯示資料"
+            shouldNavigateToSetup = true
+            
+        } else if isTransmitterEnabled && !isSensorEnabled {
+            // 發射器已啟用 ＋ 感測器未啟用
+            title = "感測器未啟用"
+            message = "感測器尚未啟用，請使用者先行啟用後才可以顯示資料"
+            shouldNavigateToSetup = true
+            
+        } else if !isTransmitterEnabled && isSensorEnabled {
+            // 發射器未啟用 ＋ 感測器已啟用（理論上不應該出現此狀態）
+            title = "設備狀態異常"
+            message = "檢測到異常狀態，請重新設定設備"
+            shouldNavigateToSetup = true
+            
+        } else {
+            // 發射器已啟用 ＋ 感測器已啟用
+            title = "感測器已啟用"
+            message = "感測器運作正常"
+            shouldNavigateToSetup = false
+        }
+        
+        // 創建彈出視窗
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        if shouldNavigateToSetup {
+            // 需要跳轉到設定頁面的情況
+            let setupAction = UIAlertAction(title: "前往設定", style: .default) { [weak self] _ in
+                self?.navigateToPairingSetup()
+            }
+            
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+            
+            alertController.addAction(setupAction)
+            alertController.addAction(cancelAction)
+            
+        } else {
+            // 感測器已啟用的情況，只顯示確認按鈕
+            let okAction = UIAlertAction(title: "確定", style: .default, handler: nil)
+            alertController.addAction(okAction)
+        }
+        
+        // 顯示彈出視窗
+        present(alertController, animated: true, completion: nil)
+        
+        print("設備狀態檢查完成 - 發射器: \(isTransmitterEnabled ? "已啟用" : "未啟用"), 感測器: \(isSensorEnabled ? "已啟用" : "未啟用")")
+    }
+    
+    // MARK: - Navigation to Setup
+    private func navigateToPairingSetup() {
+        print("導航到配對設定頁面")
+        
+        // 創建 PairingViewController 實例
+        let pairingVC = PairingViewController(nibName: "PairingViewController", bundle: nil)
+        
+        // 使用 navigationController 進行頁面跳轉
+        if let nav = navigationController {
+            nav.pushViewController(pairingVC, animated: true)
+        } else {
+            // 如果沒有 navigationController，使用 modal 方式呈現
+            pairingVC.modalPresentationStyle = .fullScreen
+            present(pairingVC, animated: true, completion: nil)
+        }
     }
     
     private func updateView(_ index: Int) {
@@ -350,9 +429,12 @@ class MainViewController: UIViewController {
         // 若是即時血糖頁面
         if index == BottomItems.GlycemicIndexViewController.rawValue {
             navigationItem.title = "即時血糖"
-            // 移除右側按鈕（如果需要）
-            navigationItem.rightBarButtonItem = nil
-            navigationItem.rightBarButtonItems = nil
+            // 保留子頁面的右側按鈕（圓環進度條）
+            if let childRightItems = child.navigationItem.rightBarButtonItems {
+                navigationItem.rightBarButtonItems = childRightItems
+            } else if let childRightItem = child.navigationItem.rightBarButtonItem {
+                navigationItem.rightBarButtonItem = childRightItem
+            }
         }
         // 其他頁面保持子頁面的設置，左側按鈕已在 applyNavigationFromChild 中處理
     }

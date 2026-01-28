@@ -32,13 +32,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下午" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5n3-La-k1C">
-                    <rect key="frame" x="61" y="480" width="278" height="49"/>
+                    <rect key="frame" x="61.333333333333343" y="480" width="278" height="49"/>
                     <fontDescription key="fontDescription" type="system" pointSize="41"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1N-p6-28H">
-                    <rect key="frame" x="81" y="594" width="238" height="69"/>
+                    <rect key="frame" x="81" y="594" width="238" height="61.666666666666629"/>
                     <color key="tintColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="登入"/>
@@ -53,7 +53,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tky-Wk-QXX">
-                    <rect key="frame" x="81" y="671" width="238" height="69"/>
+                    <rect key="frame" x="81" y="663.66666666666663" width="238" height="62"/>
                     <color key="tintColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="登入"/>
@@ -71,8 +71,8 @@
                     <rect key="frame" x="259" y="792" width="118" height="38.666666666666629"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="63" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Uf-6C-TIP">
-                    <rect key="frame" x="148" y="269" width="104" height="103"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="399" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Uf-6C-TIP">
+                    <rect key="frame" x="117" y="269" width="158" height="103"/>
                     <fontDescription key="fontDescription" type="system" pointSize="86"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -86,8 +86,8 @@
                 <constraint firstItem="2nd-g8-m98" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="1.35736" id="9wU-b8-V91"/>
                 <constraint firstItem="5n3-La-k1C" firstAttribute="centerX" secondItem="ai7-cu-TlD" secondAttribute="centerX" id="Dmn-kj-i2B"/>
                 <constraint firstItem="ai7-cu-TlD" firstAttribute="top" secondItem="2Uf-6C-TIP" secondAttribute="bottom" constant="8" symbolic="YES" id="LIB-L1-KCn"/>
-                <constraint firstItem="ai7-cu-TlD" firstAttribute="width" secondItem="2Uf-6C-TIP" secondAttribute="width" multiplier="1.06731" id="LeE-rZ-WGd"/>
-                <constraint firstItem="ai7-cu-TlD" firstAttribute="centerX" secondItem="2Uf-6C-TIP" secondAttribute="centerX" id="Lw7-UI-hkb"/>
+                <constraint firstItem="ai7-cu-TlD" firstAttribute="width" secondItem="2Uf-6C-TIP" secondAttribute="width" multiplier="1.06731" constant="-57.634979999999985" id="LeE-rZ-WGd"/>
+                <constraint firstItem="ai7-cu-TlD" firstAttribute="centerX" secondItem="2Uf-6C-TIP" secondAttribute="centerX" constant="4.1666666666666572" id="Lw7-UI-hkb"/>
                 <constraint firstItem="5n3-La-k1C" firstAttribute="top" secondItem="ai7-cu-TlD" secondAttribute="bottom" constant="52" id="UIt-XZ-sGn"/>
                 <constraint firstItem="2nd-g8-m98" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Win-hv-Xw8"/>
                 <constraint firstItem="5n3-La-k1C" firstAttribute="width" secondItem="ai7-cu-TlD" secondAttribute="width" multiplier="0.702703" constant="200" id="YfA-ZS-931"/>
@@ -95,16 +95,16 @@
                 <constraint firstItem="S1N-p6-28H" firstAttribute="top" secondItem="2Uf-6C-TIP" secondAttribute="bottom" constant="222" id="cgk-EN-5SF"/>
                 <constraint firstItem="2nd-g8-m98" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="eTU-7F-uem"/>
                 <constraint firstItem="tky-Wk-QXX" firstAttribute="width" secondItem="S1N-p6-28H" secondAttribute="width" id="fxs-mI-Gaf"/>
-                <constraint firstItem="2Uf-6C-TIP" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" constant="3.5" id="hEf-QO-Uee"/>
-                <constraint firstItem="S1N-p6-28H" firstAttribute="centerX" secondItem="2Uf-6C-TIP" secondAttribute="centerX" id="iNI-hy-47A"/>
+                <constraint firstItem="2Uf-6C-TIP" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" constant="-0.5" id="hEf-QO-Uee"/>
+                <constraint firstItem="S1N-p6-28H" firstAttribute="centerX" secondItem="2Uf-6C-TIP" secondAttribute="centerX" constant="4" id="iNI-hy-47A"/>
                 <constraint firstItem="2nd-g8-m98" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" multiplier="1.07888" id="nOT-Hq-skw"/>
                 <constraint firstItem="tky-Wk-QXX" firstAttribute="top" secondItem="S1N-p6-28H" secondAttribute="bottom" constant="8" symbolic="YES" id="rCC-Aw-yYP"/>
                 <constraint firstItem="5n3-La-k1C" firstAttribute="height" secondItem="ai7-cu-TlD" secondAttribute="height" multiplier="1.02083" id="rL0-fB-iWB"/>
                 <constraint firstItem="2Uf-6C-TIP" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" constant="-130.5" id="rbO-Po-6VN"/>
-                <constraint firstItem="S1N-p6-28H" firstAttribute="height" secondItem="2Uf-6C-TIP" secondAttribute="height" multiplier="0.669903" id="uPH-P9-E9Y"/>
+                <constraint firstItem="S1N-p6-28H" firstAttribute="height" secondItem="2Uf-6C-TIP" secondAttribute="height" multiplier="0.6" id="uPH-P9-E9Y"/>
                 <constraint firstItem="ai7-cu-TlD" firstAttribute="height" secondItem="2Uf-6C-TIP" secondAttribute="height" multiplier="0.466019" id="yLJ-xP-ZIF"/>
-                <constraint firstItem="S1N-p6-28H" firstAttribute="width" secondItem="2Uf-6C-TIP" secondAttribute="width" multiplier="2.28846" id="ygq-g6-TZL"/>
-                <constraint firstItem="2Uf-6C-TIP" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" multiplier="0.264631" id="zzn-8q-P6h"/>
+                <constraint firstItem="S1N-p6-28H" firstAttribute="width" secondItem="2Uf-6C-TIP" secondAttribute="width" multiplier="2.28846" constant="-123.57668000000001" id="ygq-g6-TZL"/>
+                <constraint firstItem="2Uf-6C-TIP" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" multiplier="0.264631" constant="54.000017" id="zzn-8q-P6h"/>
             </constraints>
             <point key="canvasLocation" x="130.53435114503816" y="19.718309859154932"/>
         </view>

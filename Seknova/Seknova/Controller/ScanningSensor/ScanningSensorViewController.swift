@@ -149,6 +149,9 @@ class ScanningSensorViewController: UIViewController {
 
     // MARK: - Alerts & Navigation
     private func showSuccessAndNavigate() {
+        // 驗證成功後，設置感測器為已啟用狀態
+        setSensorEnabled()
+        
         let success = UIAlertController(title: "驗證成功", message: nil, preferredStyle: .alert)
         present(success, animated: true) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak success, weak self] in
@@ -194,5 +197,12 @@ class ScanningSensorViewController: UIViewController {
             // 最後 fallback dismiss
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    // MARK: - Sensor Status Management
+    private func setSensorEnabled() {
+        // 設置感測器為已啟用狀態
+        UserDefaults.standard.set(true, forKey: "SensorEnabled")
+        print("感測器已設置為啟用狀態")
     }
 }

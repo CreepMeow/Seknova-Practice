@@ -34,23 +34,27 @@ class PairingViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("=== PairingVC: viewDidLoad 開始 ===")
+        print("PairingVC: delegate = \(String(describing: delegate))")
+        
         setUI()
         setInitialUIState()
-        startLoadingAnimation()
+        
+        print("PairingVC: viewDidLoad 完成")
+        // 移除：不在 viewDidLoad 就執行 loading 動畫
+        // startLoadingAnimation()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("=== PairingVC: viewWillAppear 開始 ===")
+        print("PairingVC: willPresentLoading = \(willPresentLoading)")
 
-        // 如果是從 Loading 回來（willPresentLoading 為 true）且 correct 已顯示，才開始 3 秒倒數
+        // 如果是從 Loading 回來（willPresentLoading 為 true），直接顯示 correct 圖案
         if willPresentLoading {
             willPresentLoading = false // 只觸發一次
-            // only schedule if correct already shown
-            if isCorrectShown {
-                scheduleCountdown()
-            } else {
-                print("PairingVC: returned from Loading but correct not shown yet; countdown skipped")
-            }
+            print("PairingVC: returned from LoadingViewController, directly showing correct image")
+            showCorrectAndHideOthers() // 直接顯示 correct，跳過 loading 動畫
         }
     }
 
@@ -61,10 +65,28 @@ class PairingViewController: UIViewController {
         countdownWorkItem = nil
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("=== PairingVC: viewDidAppear 開始 ===")
+        print("PairingVC: isCorrectShown = \(isCorrectShown)")
+        
+        // 只有在 correct 還沒顯示時才設置按鈕，避免在顯示 correct 後重新顯示按鈕
+        if !isCorrectShown {
+            // 在視圖完全顯示後重新設置按鈕，確保可以點擊
+            setupButtons()
+            
+            // 添加手勢識別器作為最後的備用方案
+            addTapGestureRecognizers()
+        }
+    }
+
     // MARK: - UI Settings
     func setUI() {
         self.title = "Pair Bluetooth"
         navigationItem.hidesBackButton = true
+        
+        // 確保按鈕可以點擊並添加調試信息
+        setupButtons()
     }
 
     // 初始狀態：隱藏 correct，顯示 loading（假定 imgvDot 為 loading 圖）
@@ -79,6 +101,11 @@ class PairingViewController: UIViewController {
         countdownWorkItem?.cancel()
         countdownWorkItem = nil
         willPresentLoading = false
+        
+        // 清除按鈕的調試背景色
+        btnPair?.backgroundColor = UIColor.clear
+        btnCancel?.backgroundColor = UIColor.clear
+        print("PairingVC: 按鈕背景色已清除")
     }
 
     // Loading 動畫（示範為 imgvDot 旋轉 2 秒），結束後切換畫面元件顯示隱藏
@@ -103,6 +130,8 @@ class PairingViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
 
+            print("PairingVC: showCorrectAndHideOthers 開始執行")
+            
             // 要隱藏的元件（除了 imgvCorrect 與 background）
             let toHide: [UIView?] = [
                 self.lbCNTitle,
@@ -116,7 +145,15 @@ class PairingViewController: UIViewController {
             ]
 
             // 隱藏其他元件
-            toHide.forEach { $0?.isHidden = true }
+            toHide.forEach { view in
+                view?.isHidden = true
+                if view == self.btnPair {
+                    print("PairingVC: btnPair 已隱藏")
+                }
+                if view == self.btnCancel {
+                    print("PairingVC: btnCancel 已隱藏")
+                }
+            }
 
             // 顯示 imgvCorrect（淡入）
             self.imgvCorrect?.isHidden = false
@@ -124,9 +161,10 @@ class PairingViewController: UIViewController {
             UIView.animate(withDuration: 0.3, animations: {
                 self.imgvCorrect?.alpha = 1
             }, completion: { _ in
-                // 標記 correct 已顯示，但不立即倒數
+                // 標記 correct 已顯示，並立即開始 3 秒倒數
                 self.isCorrectShown = true
-                print("PairingVC: imgvCorrect shown (isCorrectShown = true). Countdown will start only after returning from LoadingViewController.")
+                print("PairingVC: imgvCorrect shown, starting 3 second countdown")
+                self.scheduleCountdown()
             })
         }
     }
@@ -155,20 +193,11 @@ class PairingViewController: UIViewController {
                 return
             }
 
-            // 先嘗試用目前 storyboard
-            if let sb = self.storyboard,
-               let vc = sb.instantiateViewController(withIdentifier: "ScanningSensorViewController") as? ScanningSensorViewController {
-                if let nav = self.navigationController {
-                    nav.pushViewController(vc, animated: true)
-                } else {
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true, completion: nil)
-                }
-                return
-            }
-
-            // fallback：直接以程式化建立（如果 ScanningSensorViewController 是以 code 為主）
-            let scanningVC = ScanningSensorViewController()
+            print("PairingVC: navigating to ScanningSensorViewController")
+            
+            // 使用 XIB 初始化 ScanningSensorViewController
+            let scanningVC = ScanningSensorViewController(nibName: "ScanningSensorViewController", bundle: nil)
+            
             if let nav = self.navigationController {
                 nav.pushViewController(scanningVC, animated: true)
             } else {
@@ -180,25 +209,101 @@ class PairingViewController: UIViewController {
 
     // MARK: - IBAction
     @IBAction func btnCancelTapped(_ sender: UIButton) {
+        print("=== PairingVC: btnCancelTapped 被觸發 ===")
+        print("PairingVC: delegate = \(String(describing: delegate))")
+        
         // 清除儲存的 DeviceID
         UserDefaults.standard.removeObject(forKey: "DeviceID")
+        print("PairingVC: DeviceID 已清除")
 
-        // 使用 delegate 返回到 TransmitterView
+        // 直接返回到 TransmitterViewController（不依賴 delegate）
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            self.delegate?.btnCancelTapped()
+            print("PairingVC: 執行 popViewController 返回 TransmitterViewController")
+            self.navigationController?.popViewController(animated: true)
         }
     }
 
     @IBAction func btnPairTapped(_ sender: UIButton) {
-        // 設定旗標表示即將前往 Loading，回來後要執行倒數
+        print("=== PairingVC: btnPairTapped 被觸發 ===")
+        print("PairingVC: delegate = \(String(describing: delegate))")
+        
+        // 設定旗標表示即將前往 Loading，回來後要執行動畫和倒數
         willPresentLoading = true
+        print("PairingVC: willPresentLoading 設置為 true")
 
-        // 跳轉到 LoadingView（由 delegate 負責）
+        // 直接跳轉到 LoadingViewController（不依賴 delegate）
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            self.delegate?.btnPairTapped()
+            print("PairingVC: 直接跳轉到 LoadingViewController")
+            let loadingVC = LoadingViewController(nibName: "LoadingViewController", bundle: nil)
+            self.navigationController?.pushViewController(loadingVC, animated: true)
+            print("PairingVC: LoadingViewController push 完成")
         }
+    }
+    
+    // MARK: - Private Methods
+    private func setupButtons() {
+        print("=== PairingVC: setupButtons 開始執行 ===")
+        print("PairingVC: isCorrectShown = \(isCorrectShown)")
+        
+        // 確保按鈕可以互動
+        btnPair?.isUserInteractionEnabled = true
+        btnCancel?.isUserInteractionEnabled = true
+        
+        // 只有在 correct 還沒顯示時才確保按鈕可見
+        if !isCorrectShown {
+            btnPair?.isHidden = false
+            btnCancel?.isHidden = false
+            
+            // 確保按鈕在最上層
+            btnPair?.superview?.bringSubviewToFront(btnPair!)
+            btnCancel?.superview?.bringSubviewToFront(btnCancel!)
+        }
+        
+        // ...existing code...
+        print("PairingVC setupButtons:")
+        print("  btnPair = \(String(describing: btnPair))")
+        print("  btnPair.isUserInteractionEnabled = \(btnPair?.isUserInteractionEnabled ?? false)")
+        print("  btnPair.isHidden = \(btnPair?.isHidden ?? true)")
+        print("  btnPair.frame = \(btnPair?.frame ?? CGRect.zero)")
+        print("  btnCancel = \(String(describing: btnCancel))")
+        print("  btnCancel.isUserInteractionEnabled = \(btnCancel?.isUserInteractionEnabled ?? false)")
+        print("  btnCancel.isHidden = \(btnCancel?.isHidden ?? true)")
+        print("  btnCancel.frame = \(btnCancel?.frame ?? CGRect.zero)")
+        print("  delegate = \(String(describing: delegate))")
+        
+        // 如果按鈕為 nil，輸出警告
+        if btnPair == nil {
+            print("⚠️ 警告: btnPair 為 nil！XIB 連接可能有問題")
+        }
+        if btnCancel == nil {
+            print("⚠️ 警告: btnCancel 為 nil！XIB 連接可能有問題")
+        }
+        
+        // 作為備用方案，程式化添加按鈕事件（以防 XIB 連接失效）
+        btnPair?.removeTarget(nil, action: nil, for: .allEvents) // 先清除舊的
+        btnCancel?.removeTarget(nil, action: nil, for: .allEvents)
+        
+        btnPair?.addTarget(self, action: #selector(btnPairTapped(_:)), for: .touchUpInside)
+        btnCancel?.addTarget(self, action: #selector(btnCancelTapped(_:)), for: .touchUpInside)
+        
+        print("PairingVC: 程式化按鈕事件已添加")
+        print("=== PairingVC: setupButtons 完成 ===")
+    }
+    
+    private func addTapGestureRecognizers() {
+        print("=== PairingVC: addTapGestureRecognizers 開始執行 ===")
+        
+        // 為 btnPair 添加點擊手勢識別器
+        let pairTapGesture = UITapGestureRecognizer(target: self, action: #selector(btnPairTapped(_:)))
+        btnPair?.addGestureRecognizer(pairTapGesture)
+        
+        // 為 btnCancel 添加點擊手勢識別器
+        let cancelTapGesture = UITapGestureRecognizer(target: self, action: #selector(btnCancelTapped(_:)))
+        btnCancel?.addGestureRecognizer(cancelTapGesture)
+        
+        print("=== PairingVC: addTapGestureRecognizers 完成 ===")
     }
 }
 // MARK: - Extensions

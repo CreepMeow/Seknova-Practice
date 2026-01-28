@@ -10,19 +10,65 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HistoricalViewController" customModule="Seknova" customModuleProvider="target">
             <connections>
+                <outlet property="HistTime" destination="Ljv-VW-JlW" id="eaX-EA-D1p"/>
+                <outlet property="HistView" destination="chart-view" id="chart-outlet"/>
+                <outlet property="Histlarge" destination="p3U-px-aVH" id="0bO-uz-1fK"/>
+                <outlet property="hrSec" destination="Vho-iW-qHu" id="jlE-tX-87e"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chart-view" customClass="LineChartView" customModule="DGCharts">
+                    <rect key="frame" x="16" y="333" width="361" height="338"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zoomall" translatesAutoresizingMaskIntoConstraints="NO" id="Ljv-VW-JlW">
+                    <rect key="frame" x="277" y="679" width="54" height="54"/>
+                </imageView>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="4" translatesAutoresizingMaskIntoConstraints="NO" id="Vho-iW-qHu">
+                    <rect key="frame" x="16" y="691" width="264" height="32"/>
+                    <segments>
+                        <segment title="1 hr"/>
+                        <segment title="3 hr"/>
+                        <segment title="6 hr"/>
+                        <segment title="12 hr"/>
+                        <segment title="24 hr"/>
+                    </segments>
+                </segmentedControl>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_r" translatesAutoresizingMaskIntoConstraints="NO" id="p3U-px-aVH">
+                    <rect key="frame" x="339" y="679" width="54" height="54"/>
+                </imageView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="58" y="21"/>
+            <constraints>
+                <constraint firstItem="chart-view" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.396714" id="0NN-RC-Uwp"/>
+                <constraint firstItem="p3U-px-aVH" firstAttribute="width" secondItem="Ljv-VW-JlW" secondAttribute="width" id="4We-8A-oMr"/>
+                <constraint firstItem="chart-view" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" constant="51" id="8B4-17-TkD"/>
+                <constraint firstItem="Ljv-VW-JlW" firstAttribute="height" secondItem="Vho-iW-qHu" secondAttribute="height" multiplier="1.74194" id="I2d-Ti-peD"/>
+                <constraint firstItem="chart-view" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.908397" constant="4" id="Jfv-VL-4C4"/>
+                <constraint firstItem="Vho-iW-qHu" firstAttribute="width" secondItem="chart-view" secondAttribute="width" multiplier="0.731302" id="KXb-8k-6VZ"/>
+                <constraint firstItem="Vho-iW-qHu" firstAttribute="top" secondItem="Ljv-VW-JlW" secondAttribute="bottom" constant="-42" id="Kgt-Xv-Wkg"/>
+                <constraint firstItem="p3U-px-aVH" firstAttribute="height" secondItem="Ljv-VW-JlW" secondAttribute="height" id="MgU-aw-oxt"/>
+                <constraint firstItem="p3U-px-aVH" firstAttribute="top" secondItem="Ljv-VW-JlW" secondAttribute="bottom" constant="-54" id="PcN-du-s7y"/>
+                <constraint firstItem="Vho-iW-qHu" firstAttribute="height" secondItem="chart-view" secondAttribute="height" multiplier="0.091716" id="Suy-cB-mWB"/>
+                <constraint firstItem="Ljv-VW-JlW" firstAttribute="leading" secondItem="Vho-iW-qHu" secondAttribute="trailing" constant="-3" id="VAA-Hx-HGZ"/>
+                <constraint firstItem="Ljv-VW-JlW" firstAttribute="width" secondItem="Vho-iW-qHu" secondAttribute="width" multiplier="0.204545" id="c7y-zb-N3a"/>
+                <constraint firstItem="chart-view" firstAttribute="leading" secondItem="Vho-iW-qHu" secondAttribute="trailing" constant="-264" id="lRo-uA-Q6x"/>
+                <constraint firstItem="p3U-px-aVH" firstAttribute="leading" secondItem="Ljv-VW-JlW" secondAttribute="trailing" constant="8" symbolic="YES" id="mdx-se-9Qx"/>
+                <constraint firstItem="Vho-iW-qHu" firstAttribute="top" secondItem="chart-view" secondAttribute="bottom" constant="20" id="rtQ-bH-whE"/>
+                <constraint firstItem="chart-view" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="wkh-HR-F7h"/>
+            </constraints>
+            <point key="canvasLocation" x="57.251908396946561" y="20.422535211267608"/>
         </view>
     </objects>
     <resources>
+        <image name="arrow_r" width="512" height="512"/>
+        <image name="zoomall" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

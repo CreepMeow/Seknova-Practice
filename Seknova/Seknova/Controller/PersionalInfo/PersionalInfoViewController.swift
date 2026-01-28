@@ -272,6 +272,8 @@ class PersionalInfoViewController: UIViewController, UITextFieldDelegate {
         
         cell.lbValue.text = option
         cell.lbValue.isHidden = false
+        cell.btnValue.isHidden = true  // 隱藏按鈕，顯示選擇的文字
+        //cell.imgvBtn.isHidden = true   // 確保倒三角形隱藏
     }
     
 }
@@ -297,7 +299,7 @@ extension PersionalInfoViewController: UITableViewDataSource, UITableViewDelegat
             cell.lbTitle.text = persionalInfoItems[indexPath.row]
             
             if indexPath.row == 2 { // 出生日期
-                cell.imgvBtn.isHidden = false
+                //cell.imgvBtn.isHidden = false
                 cell.lbValue.isHidden = false
                 cell.lbValue.text = cell.lbValue.text?.isEmpty ?? true ? "" : cell.lbValue.text
                 cell.btnValue.isHidden = false
@@ -309,7 +311,7 @@ extension PersionalInfoViewController: UITableViewDataSource, UITableViewDelegat
                 cell.txfValue.isHidden = false
                 cell.lbValue.isHidden = true
                 cell.btnValue.isHidden = true
-                cell.imgvBtn.isHidden = true
+                //cell.imgvBtn.isHidden = true
                 
                 if indexPath.row == 3 { // 電子信箱
                     cell.txfValue.keyboardType = .emailAddress
@@ -327,7 +329,7 @@ extension PersionalInfoViewController: UITableViewDataSource, UITableViewDelegat
             if indexPath.row == 0 || indexPath.row >= 3 {
                 // 性別、種族、飲酒、抽菸 - 使用按鈕選擇
                 cell.btnValue.isHidden = false
-                cell.imgvBtn.isHidden = false
+                //cell.imgvBtn.isHidden = false
                 cell.txfValue.isHidden = true
                 cell.lbValue.isHidden = true
                 cell.btnValue.addTarget(self, action: #selector(showBodyInfoOptions(_:)), for: .touchUpInside)
@@ -336,7 +338,7 @@ extension PersionalInfoViewController: UITableViewDataSource, UITableViewDelegat
                 // 身高、體重 - 使用文字欄位輸入
                 cell.txfValue.isHidden = false
                 cell.btnValue.isHidden = true
-                cell.imgvBtn.isHidden = true
+                //cell.imgvBtn.isHidden = true
                 cell.lbValue.isHidden = true
                 
                 if indexPath.row == 1 { // 身高

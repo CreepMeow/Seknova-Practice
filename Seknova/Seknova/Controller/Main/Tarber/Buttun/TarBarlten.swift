@@ -21,12 +21,30 @@ class TarBarlten: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         addview()
+        // 設定初始狀態為未選中
+        setSelected(false)
     }
 
     func setint(tag: Int, text: String) {
         TabBarbut.tag = tag
         TabBarLabel.text = text
         stringTag = tag
+    }
+    
+    /// 設置按鈕的選中狀態
+    /// - Parameter selected: true 為選中，false 為未選中
+    func setSelected(_ selected: Bool) {
+        DispatchQueue.main.async {
+            if selected {
+                // 選中狀態：改變文字和圖片顏色為紅色
+                self.TabBarLabel.textColor = UIColor(red: 0.69, green: 0.16, blue: 0.17, alpha: 1)
+                self.TabBarImag.tintColor = UIColor(red: 0.69, green: 0.16, blue: 0.17, alpha: 1)
+            } else {
+                // 未選中狀態：使用灰色
+                self.TabBarLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+                self.TabBarImag.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+            }
+        }
     }
 
     @IBAction func didYapBtn(_ sender: Any) {

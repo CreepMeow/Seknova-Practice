@@ -44,6 +44,9 @@ class GlycemicIndexViewController: UIViewController {
         navigationItem.hidesBackButton = true
         title = "即時血糖"
         
+        // 添加右側圓環進度條按鈕
+        setupCircularProgressButton()
+        
         // 設置起始時間
         startTime = Date()
         setupTimePoints()
@@ -67,6 +70,193 @@ class GlycemicIndexViewController: UIViewController {
     
     private func updateCurrentBloodGlucoseDisplay() {
         Glylb?.text = String(format: "%.0f", currentBloodGlucose)
+    }
+    
+    // MARK: - Circular Progress Button
+    private func setupCircularProgressButton() {
+        let circularButton = createCircularProgressView()
+        let barButtonItem = UIBarButtonItem(customView: circularButton)
+        navigationItem.rightBarButtonItem = barButtonItem
+    }
+    
+    private func createCircularProgressView() -> UIView {
+        let aDegree = Double.pi / 180
+        let lineWidth: Double = 3
+        let radius: Double = 12
+        let startDegree: Double = 270
+        
+        // 創建背景圓環
+        let circlePath = UIBezierPath(ovalIn: CGRect(x: lineWidth, y: lineWidth, width: radius*2, height: radius*2))
+        let circleLayer = CAShapeLayer()
+        circleLayer.path = circlePath.cgPath
+        circleLayer.strokeColor = UIColor.lightGray.cgColor
+        circleLayer.lineWidth = lineWidth
+        circleLayer.fillColor = UIColor.clear.cgColor
+        
+        // 創建進度圓環 (假設60%進度)
+        let percentage: CGFloat = 60
+        let endDegree = startDegree + 360 * Double(percentage) / 100
+        let percentagePath = UIBezierPath(arcCenter: CGPoint(x: lineWidth + radius, y: lineWidth + radius),
+                                        radius: radius,
+                                        startAngle: aDegree * startDegree,
+                                        endAngle: aDegree * endDegree,
+                                        clockwise: true)
+        let percentageLayer = CAShapeLayer()
+        percentageLayer.path = percentagePath.cgPath
+        percentageLayer.strokeColor = UIColor.green.cgColor
+        percentageLayer.lineWidth = lineWidth
+        percentageLayer.fillColor = UIColor.clear.cgColor
+        
+        // 創建容器視圖
+        let viewWidth = 2*(radius+lineWidth)
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: viewWidth, height: viewWidth))
+        containerView.layer.addSublayer(circleLayer)
+        containerView.layer.addSublayer(percentageLayer)
+        
+        // 添加點擊手勢
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(circularProgressTapped))
+        containerView.addGestureRecognizer(tapGesture)
+        containerView.isUserInteractionEnabled = true
+        
+        return containerView
+    }
+    
+    @objc private func circularProgressTapped() {
+        showSensorStatusPopup()
+    }
+    
+    private func showSensorStatusPopup() {
+        // 如果彈窗已經顯示，則關閉它
+        if let existingPopup = view.viewWithTag(999) {
+            hideSensorStatusPopup()
+            return
+        }
+        
+        // 創建彈出視窗，類似選單的顯示方式
+        let popupWidth: CGFloat = 200
+        let popupHeight: CGFloat = 280
+        
+        // 計算右上角位置
+        let popupX = view.bounds.width - popupWidth - 10
+        let popupY: CGFloat = 10 // 貼近導航欄底部
+        
+        let popupView = UIView(frame: CGRect(
+            x: popupX,
+            y: popupY,
+            width: popupWidth,
+            height: popupHeight
+        ))
+        popupView.backgroundColor = .white
+        popupView.tag = 999 // 用於後續移除
+        popupView.layer.cornerRadius = 12
+        popupView.layer.shadowColor = UIColor.black.cgColor
+        popupView.layer.shadowOpacity = 0.3
+        popupView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        popupView.layer.shadowRadius = 8
+        
+        // 創建大的圓環進度條
+        let bigCircularView = createBigCircularProgressView()
+        bigCircularView.frame = CGRect(x: (popupWidth - 120) / 2, y: 20, width: 120, height: 120)
+        popupView.addSubview(bigCircularView)
+        
+        // 添加 "10 Day" 標籤
+        let dayLabel = UILabel()
+        dayLabel.text = "10 Day"
+        dayLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        dayLabel.textAlignment = .center
+        dayLabel.frame = CGRect(x: 0, y: 150, width: popupWidth, height: 25)
+        popupView.addSubview(dayLabel)
+        
+        // 添加 "Calibrated Now" 標籤
+        let calibratedLabel = UILabel()
+        calibratedLabel.text = "Calibrated Now"
+        calibratedLabel.font = UIFont.systemFont(ofSize: 16)
+        calibratedLabel.textAlignment = .center
+        calibratedLabel.frame = CGRect(x: 0, y: 180, width: popupWidth, height: 20)
+        popupView.addSubview(calibratedLabel)
+        
+        // 添加日曆圖標
+        let calendarIcon = UIImageView()
+        if let image = UIImage(systemName: "calendar") {
+            calendarIcon.image = image
+            calendarIcon.tintColor = .orange
+        }
+        calendarIcon.frame = CGRect(x: (popupWidth - 30) / 2, y: 210, width: 30, height: 30)
+        popupView.addSubview(calendarIcon)
+        
+        // 添加關閉手勢
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideSensorStatusPopup))
+        view.addGestureRecognizer(tapGesture)
+        
+        view.addSubview(popupView)
+        
+        // 添加動畫效果
+        popupView.alpha = 0
+        popupView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0) {
+            popupView.alpha = 1
+            popupView.transform = .identity
+        }
+    }
+    
+    @objc private func hideSensorStatusPopup() {
+        guard let popupView = view.viewWithTag(999) else { return }
+        
+        // 移除手勢識別器
+        view.gestureRecognizers?.removeAll { $0.isKind(of: UITapGestureRecognizer.self) }
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            popupView.alpha = 0
+            popupView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        }) { _ in
+            popupView.removeFromSuperview()
+        }
+    }
+    
+    private func createBigCircularProgressView() -> UIView {
+        let aDegree = Double.pi / 180
+        let lineWidth: Double = 10
+        let radius: Double = 50
+        let startDegree: Double = 270
+        
+        // 創建背景圓環
+        let circlePath = UIBezierPath(ovalIn: CGRect(x: lineWidth, y: lineWidth, width: radius*2, height: radius*2))
+        let circleLayer = CAShapeLayer()
+        circleLayer.path = circlePath.cgPath
+        circleLayer.strokeColor = UIColor.lightGray.cgColor
+        circleLayer.lineWidth = lineWidth
+        circleLayer.fillColor = UIColor.clear.cgColor
+        
+        // 創建進度圓環
+        let percentage: CGFloat = 60
+        let endDegree = startDegree + 360 * Double(percentage) / 100
+        let percentagePath = UIBezierPath(arcCenter: CGPoint(x: lineWidth + radius, y: lineWidth + radius),
+                                        radius: radius,
+                                        startAngle: aDegree * startDegree,
+                                        endAngle: aDegree * endDegree,
+                                        clockwise: true)
+        let percentageLayer = CAShapeLayer()
+        percentageLayer.path = percentagePath.cgPath
+        percentageLayer.strokeColor = UIColor.green.cgColor
+        percentageLayer.lineWidth = lineWidth
+        percentageLayer.fillColor = UIColor.clear.cgColor
+        
+        // 創建容器視圖
+        let viewWidth = 2*(radius+lineWidth)
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: viewWidth, height: viewWidth))
+        containerView.layer.addSublayer(circleLayer)
+        containerView.layer.addSublayer(percentageLayer)
+        
+        // 添加中間的問號圖標
+        let questionMark = UILabel(frame: containerView.bounds)
+        questionMark.textAlignment = .center
+        questionMark.text = "?"
+        questionMark.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        questionMark.textColor = .black
+        containerView.addSubview(questionMark)
+        
+        return containerView
     }
     
     // MARK: - Chart Setup
