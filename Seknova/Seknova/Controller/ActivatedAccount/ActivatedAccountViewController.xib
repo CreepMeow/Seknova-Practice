@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ActivatedAccountViewController" customModule="Seknova_Practice" customModuleProvider="target">
+            <connections>
+                <outlet property="btnNext" destination="OLa-sa-EwA" id="L07-Cm-7fA"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.25" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="VER-WJ-Ubn">
+                    <rect key="frame" x="-21" y="59" width="393" height="759"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Seknova" translatesAutoresizingMaskIntoConstraints="NO" id="bKM-e9-rNj">
+                    <rect key="frame" x="252" y="59" width="120" height="64"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請到信箱點選認證信開通帳號" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edQ-Su-zUR">
+                    <rect key="frame" x="-3.6666666666666572" y="425" width="400.33333333333326" height="27"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ama-sl-Wl4">
+                    <rect key="frame" x="71.666666666666671" y="470" width="249.66666666666663" height="50"/>
+                    <color key="tintColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="登入"/>
+                    <buttonConfiguration key="configuration" style="plain" title="重送驗證信" cornerStyle="capsule">
+                        <backgroundConfiguration key="background" strokeWidth="6">
+                            <color key="strokeColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </backgroundConfiguration>
+                    </buttonConfiguration>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開  通  帳  號" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ycz-ui-L8R">
+                    <rect key="frame" x="123.66666666666669" y="179" width="146" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                    <color key="textColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activated Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vag-Rx-Xeg">
+                    <rect key="frame" x="77.666666666666686" y="100" width="238" height="36"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <color key="textColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLa-sa-EwA">
+                    <rect key="frame" x="71.333333333333329" y="768" width="250.33333333333337" height="50"/>
+                    <color key="tintColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="登入"/>
+                    <buttonConfiguration key="configuration" style="plain" title="下一步" cornerStyle="capsule">
+                        <backgroundConfiguration key="background" strokeWidth="6">
+                            <color key="strokeColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </backgroundConfiguration>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="nextButtonTapped:" destination="-1" eventType="touchUpInside" id="JgF-fL-oUg"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="VER-WJ-Ubn" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="1af-MR-NKX"/>
+                <constraint firstItem="Ycz-ui-L8R" firstAttribute="width" secondItem="vag-Rx-Xeg" secondAttribute="width" multiplier="0.613445" id="1bz-UI-u0A"/>
+                <constraint firstItem="Ycz-ui-L8R" firstAttribute="height" secondItem="vag-Rx-Xeg" secondAttribute="height" multiplier="0.805556" id="7i4-JJ-AoF"/>
+                <constraint firstItem="VER-WJ-Ubn" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.890845" id="8lD-fh-iyP"/>
+                <constraint firstItem="Ama-sl-Wl4" firstAttribute="width" secondItem="edQ-Su-zUR" secondAttribute="width" multiplier="0.623647" id="9CT-oL-lTl"/>
+                <constraint firstItem="Ama-sl-Wl4" firstAttribute="centerX" secondItem="edQ-Su-zUR" secondAttribute="centerX" id="A1c-vv-Xzy"/>
+                <constraint firstItem="edQ-Su-zUR" firstAttribute="top" secondItem="vag-Rx-Xeg" secondAttribute="bottom" constant="289" id="A8O-4C-4Rl"/>
+                <constraint firstItem="bKM-e9-rNj" firstAttribute="height" secondItem="VER-WJ-Ubn" secondAttribute="height" multiplier="0.0843215" id="Jtb-Hc-87I"/>
+                <constraint firstItem="vag-Rx-Xeg" firstAttribute="centerX" secondItem="edQ-Su-zUR" secondAttribute="centerX" id="Lcz-Na-avm"/>
+                <constraint firstItem="edQ-Su-zUR" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="MBD-wJ-CIZ"/>
+                <constraint firstItem="bKM-e9-rNj" firstAttribute="leading" secondItem="VER-WJ-Ubn" secondAttribute="trailing" constant="-120" id="Vnq-Nc-REV"/>
+                <constraint firstItem="OLa-sa-EwA" firstAttribute="centerX" secondItem="Ama-sl-Wl4" secondAttribute="centerX" id="Xhd-Ch-aK0"/>
+                <constraint firstItem="VER-WJ-Ubn" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="Xse-Bl-9Oc"/>
+                <constraint firstItem="bKM-e9-rNj" firstAttribute="top" secondItem="VER-WJ-Ubn" secondAttribute="top" id="ZOD-XL-0tY"/>
+                <constraint firstItem="Ycz-ui-L8R" firstAttribute="top" secondItem="vag-Rx-Xeg" secondAttribute="bottom" constant="43" id="Zod-gZ-TV7"/>
+                <constraint firstItem="vag-Rx-Xeg" firstAttribute="height" secondItem="edQ-Su-zUR" secondAttribute="height" multiplier="1.33333" id="a6h-OB-qv6"/>
+                <constraint firstItem="edQ-Su-zUR" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.0316901" id="cZG-5x-Ghb"/>
+                <constraint firstItem="Ama-sl-Wl4" firstAttribute="top" secondItem="edQ-Su-zUR" secondAttribute="bottom" constant="18" id="e3s-j1-K75"/>
+                <constraint firstItem="edQ-Su-zUR" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="fnW-0T-mpU"/>
+                <constraint firstItem="edQ-Su-zUR" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="1.01866" id="foo-2S-D4w"/>
+                <constraint firstItem="VER-WJ-Ubn" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" constant="-21" id="g7J-lR-DI3"/>
+                <constraint firstItem="OLa-sa-EwA" firstAttribute="top" secondItem="Ama-sl-Wl4" secondAttribute="bottom" constant="248" id="gvj-R4-885"/>
+                <constraint firstItem="OLa-sa-EwA" firstAttribute="height" secondItem="Ama-sl-Wl4" secondAttribute="height" id="iNP-PW-NXg"/>
+                <constraint firstItem="vag-Rx-Xeg" firstAttribute="width" secondItem="edQ-Su-zUR" secondAttribute="width" multiplier="0.594505" id="lGH-JN-4mY"/>
+                <constraint firstItem="bKM-e9-rNj" firstAttribute="width" secondItem="VER-WJ-Ubn" secondAttribute="width" multiplier="0.305344" id="pLl-0f-Jow"/>
+                <constraint firstItem="Ama-sl-Wl4" firstAttribute="height" secondItem="edQ-Su-zUR" secondAttribute="height" multiplier="1.85185" id="ryb-Bl-Spc"/>
+                <constraint firstItem="OLa-sa-EwA" firstAttribute="width" secondItem="Ama-sl-Wl4" secondAttribute="width" multiplier="1.00267" id="uxC-qL-y7R"/>
+                <constraint firstItem="Ycz-ui-L8R" firstAttribute="centerX" secondItem="vag-Rx-Xeg" secondAttribute="centerX" id="wkx-Jv-5XK"/>
+            </constraints>
+            <point key="canvasLocation" x="32" y="-11"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Background" width="1126" height="2437"/>
+        <image name="Seknova" width="467" height="72"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

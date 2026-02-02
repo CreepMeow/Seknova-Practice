@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReportViewController" customModule="Seknova" customModuleProvider="target">
+            <connections>
+                <outlet property="ReTimeControl" destination="EbD-C1-vg0" id="o4j-uq-qFl"/>
+                <outlet property="ReportControl" destination="oa3-p6-5Ay" id="4LT-0Y-9oP"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="EbD-C1-vg0">
+                    <rect key="frame" x="71.666666666666686" y="118" width="250" height="32"/>
+                    <segments>
+                        <segment title="Daily Patterns"/>
+                        <segment title="Time in Target"/>
+                    </segments>
+                </segmentedControl>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E4Z-ot-Y2I">
+                    <rect key="frame" x="16" y="186" width="361" height="487"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date available for 7 of 30 days" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2z-Kw-0AW">
+                    <rect key="frame" x="38" y="692" width="317" height="33"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oa3-p6-5Ay">
+                    <rect key="frame" x="71.666666666666686" y="742" width="250" height="32"/>
+                    <segments>
+                        <segment title="7 DAYS"/>
+                        <segment title="14 DAYS"/>
+                        <segment title="30 DAYS" width="82"/>
+                    </segments>
+                </segmentedControl>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="EbD-C1-vg0" firstAttribute="centerX" secondItem="E4Z-ot-Y2I" secondAttribute="centerX" id="0Ia-vO-cbp"/>
+                <constraint firstItem="oa3-p6-5Ay" firstAttribute="top" secondItem="z2z-Kw-0AW" secondAttribute="bottom" constant="17" id="4Nc-df-0dU"/>
+                <constraint firstItem="z2z-Kw-0AW" firstAttribute="height" secondItem="E4Z-ot-Y2I" secondAttribute="height" multiplier="0.0677618" id="6Id-4U-44d"/>
+                <constraint firstItem="z2z-Kw-0AW" firstAttribute="centerX" secondItem="E4Z-ot-Y2I" secondAttribute="centerX" id="7wt-cU-ihg"/>
+                <constraint firstItem="E4Z-ot-Y2I" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" constant="-21.5" id="Aqn-xo-aiN"/>
+                <constraint firstItem="oa3-p6-5Ay" firstAttribute="height" secondItem="z2z-Kw-0AW" secondAttribute="height" multiplier="0.939394" id="ETM-Dm-kGf"/>
+                <constraint firstItem="z2z-Kw-0AW" firstAttribute="top" secondItem="E4Z-ot-Y2I" secondAttribute="bottom" constant="19" id="FbW-1m-zZa"/>
+                <constraint firstItem="EbD-C1-vg0" firstAttribute="width" secondItem="E4Z-ot-Y2I" secondAttribute="width" multiplier="0.692521" id="Gy8-40-J0i"/>
+                <constraint firstItem="EbD-C1-vg0" firstAttribute="height" secondItem="E4Z-ot-Y2I" secondAttribute="height" multiplier="0.063655" id="Nwp-nt-4SU"/>
+                <constraint firstItem="E4Z-ot-Y2I" firstAttribute="top" secondItem="EbD-C1-vg0" secondAttribute="bottom" constant="37" id="Skz-gt-OGd"/>
+                <constraint firstItem="E4Z-ot-Y2I" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.585681" constant="-11.999999999999943" id="VS6-ql-1sS"/>
+                <constraint firstItem="oa3-p6-5Ay" firstAttribute="width" secondItem="z2z-Kw-0AW" secondAttribute="width" multiplier="0.788644" id="W8u-nh-21j"/>
+                <constraint firstItem="z2z-Kw-0AW" firstAttribute="width" secondItem="E4Z-ot-Y2I" secondAttribute="width" multiplier="0.878116" id="d40-Km-p9i"/>
+                <constraint firstItem="E4Z-ot-Y2I" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="hj5-MF-zL2"/>
+                <constraint firstItem="oa3-p6-5Ay" firstAttribute="centerX" secondItem="z2z-Kw-0AW" secondAttribute="centerX" id="q2F-nK-iHi"/>
+                <constraint firstItem="E4Z-ot-Y2I" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.918575" id="tYa-dD-LXK"/>
+            </constraints>
+            <point key="canvasLocation" x="43.511450381679388" y="20.422535211267608"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
