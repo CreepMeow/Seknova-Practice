@@ -29,14 +29,23 @@ class GlycemicIndexViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        print("👋 頁面即將消失，停止 Timer")
         timer?.invalidate()
         timer = nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("👀 頁面即將顯示")
+        
         // 每次回到頁面時重置圖表大小
         resetChartZoom()
+        
+        // 如果 timer 不存在，重新啟動（防止被意外停止）
+        if timer == nil || timer?.isValid == false {
+            print("⚠️ Timer 不存在或已失效，重新啟動")
+            startRealTimeUpdates()
+        }
     }
     
     // MARK: - UI Settings
@@ -81,37 +90,104 @@ class GlycemicIndexViewController: UIViewController {
     
     private func createCircularProgressView() -> UIView {
         let aDegree = Double.pi / 180
-        let lineWidth: Double = 3
-        let radius: Double = 12
+        let lineWidth: Double = 8  // 進度條線條寬度
+        let radius: Double = 13  // 圓環半徑
         let startDegree: Double = 270
+        let outerBorderWidth: Double = 1  // 外圍黑色描邊寬度
         
-        // 創建背景圓環
-        let circlePath = UIBezierPath(ovalIn: CGRect(x: lineWidth, y: lineWidth, width: radius*2, height: radius*2))
+        // 創建外圍黑色描邊圓環
+        let outerRadius = radius + lineWidth/2 + outerBorderWidth/2
+        let outerCirclePath = UIBezierPath(arcCenter: CGPoint(x: lineWidth + radius + outerBorderWidth,
+                                                               y: lineWidth + radius + outerBorderWidth),
+                                          radius: outerRadius,
+                                          startAngle: 0,
+                                          endAngle: 2 * Double.pi,
+                                          clockwise: true)
+        let outerBorderLayer = CAShapeLayer()
+        outerBorderLayer.path = outerCirclePath.cgPath
+        outerBorderLayer.strokeColor = UIColor.black.cgColor
+        outerBorderLayer.lineWidth = outerBorderWidth
+        outerBorderLayer.fillColor = UIColor.clear.cgColor
+        
+        // 創建內側黑色描邊圓環（空心部分的邊緣）
+        let innerRadius = radius - lineWidth/1.5
+        let innerCirclePath = UIBezierPath(arcCenter: CGPoint(x: lineWidth + radius + outerBorderWidth,
+                                                               y: lineWidth + radius + outerBorderWidth),
+                                          radius: innerRadius,
+                                          startAngle: 0,
+                                          endAngle: 2 * Double.pi,
+                                          clockwise: true)
+        let innerBorderLayer = CAShapeLayer()
+        innerBorderLayer.path = innerCirclePath.cgPath
+        innerBorderLayer.strokeColor = UIColor.black.cgColor
+        innerBorderLayer.lineWidth = outerBorderWidth
+        innerBorderLayer.fillColor = UIColor.clear.cgColor
+        
+        // 創建背景圓環（淺灰色）
+        let circlePath = UIBezierPath(ovalIn: CGRect(x: lineWidth + outerBorderWidth,
+                                                      y: lineWidth + outerBorderWidth,
+                                                      width: radius*2,
+                                                      height: radius*2))
         let circleLayer = CAShapeLayer()
         circleLayer.path = circlePath.cgPath
-        circleLayer.strokeColor = UIColor.lightGray.cgColor
+        circleLayer.strokeColor = UIColor(white: 0.9, alpha: 1).cgColor
         circleLayer.lineWidth = lineWidth
         circleLayer.fillColor = UIColor.clear.cgColor
         
-        // 創建進度圓環 (假設60%進度)
+        // 創建進度圓環 (假設60%進度) - 使用紅色/橘色
         let percentage: CGFloat = 60
         let endDegree = startDegree + 360 * Double(percentage) / 100
-        let percentagePath = UIBezierPath(arcCenter: CGPoint(x: lineWidth + radius, y: lineWidth + radius),
+        let percentagePath = UIBezierPath(arcCenter: CGPoint(x: lineWidth + radius + outerBorderWidth,
+                                                              y: lineWidth + radius + outerBorderWidth),
                                         radius: radius,
                                         startAngle: aDegree * startDegree,
                                         endAngle: aDegree * endDegree,
                                         clockwise: true)
         let percentageLayer = CAShapeLayer()
         percentageLayer.path = percentagePath.cgPath
-        percentageLayer.strokeColor = UIColor.green.cgColor
+        percentageLayer.strokeColor = UIColor.green.cgColor  // 改回綠色
         percentageLayer.lineWidth = lineWidth
         percentageLayer.fillColor = UIColor.clear.cgColor
         
-        // 創建容器視圖
-        let viewWidth = 2*(radius+lineWidth)
+        // 在進度條起點添加黑色標記線（頂部中心點）
+        let startMarkerPath = UIBezierPath()
+        let startAngleRad = aDegree * startDegree
+        let startX = lineWidth + radius + outerBorderWidth + radius * cos(startAngleRad)
+        let startY = lineWidth + radius + outerBorderWidth + radius * sin(startAngleRad)
+        let startOuterX = lineWidth + radius + outerBorderWidth + (radius + lineWidth/2) * cos(startAngleRad)
+        let startOuterY = lineWidth + radius + outerBorderWidth + (radius + lineWidth/2) * sin(startAngleRad)
+        startMarkerPath.move(to: CGPoint(x: startX, y: startY))
+        startMarkerPath.addLine(to: CGPoint(x: startOuterX, y: startOuterY))
+        
+        let startMarkerLayer = CAShapeLayer()
+        startMarkerLayer.path = startMarkerPath.cgPath
+        startMarkerLayer.strokeColor = UIColor.black.cgColor
+        startMarkerLayer.lineWidth = 2
+        
+        // 在進度條終點添加黑色標記線
+        let endMarkerPath = UIBezierPath()
+        let endAngleRad = aDegree * endDegree
+        let endX = lineWidth + radius + outerBorderWidth + radius * cos(endAngleRad)
+        let endY = lineWidth + radius + outerBorderWidth + radius * sin(endAngleRad)
+        let endOuterX = lineWidth + radius + outerBorderWidth + (radius + lineWidth/2) * cos(endAngleRad)
+        let endOuterY = lineWidth + radius + outerBorderWidth + (radius + lineWidth/2) * sin(endAngleRad)
+        endMarkerPath.move(to: CGPoint(x: endX, y: endY))
+        endMarkerPath.addLine(to: CGPoint(x: endOuterX, y: endOuterY))
+        
+        let endMarkerLayer = CAShapeLayer()
+        endMarkerLayer.path = endMarkerPath.cgPath
+        endMarkerLayer.strokeColor = UIColor.black.cgColor
+        endMarkerLayer.lineWidth = 2
+        
+        // 創建容器視圖 (需要增加尺寸以容納外圍描邊)
+        let viewWidth = 2*(radius + lineWidth + outerBorderWidth)
         let containerView = UIView(frame: CGRect(x: 0, y: 0, width: viewWidth, height: viewWidth))
+        containerView.layer.addSublayer(outerBorderLayer)  // 先添加外圍描邊
+        containerView.layer.addSublayer(innerBorderLayer)  // 添加內側描邊
         containerView.layer.addSublayer(circleLayer)
         containerView.layer.addSublayer(percentageLayer)
+        containerView.layer.addSublayer(startMarkerLayer)  // 添加起點標記線
+        containerView.layer.addSublayer(endMarkerLayer)    // 添加終點標記線
         
         // 添加點擊手勢
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(circularProgressTapped))

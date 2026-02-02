@@ -40,9 +40,9 @@ class TarBarlten: UIView {
                 self.TabBarLabel.textColor = UIColor(red: 0.69, green: 0.16, blue: 0.17, alpha: 1)
                 self.TabBarImag.tintColor = UIColor(red: 0.69, green: 0.16, blue: 0.17, alpha: 1)
             } else {
-                // 未選中狀態：使用灰色
-                self.TabBarLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
-                self.TabBarImag.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+                // 未選中狀態：使用黑色
+                self.TabBarLabel.textColor = UIColor.black
+                self.TabBarImag.tintColor = UIColor.black
             }
         }
     }

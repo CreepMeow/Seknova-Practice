@@ -36,6 +36,9 @@ class HistoricalViewController: UIViewController {
         navigationItem.hidesBackButton = true
         title = "歷史紀錄"
         
+        // 添加右上角重整按鈕
+        setupRefreshButton()
+        
         // 設定 SegmentedControl
         hrSec.removeAllSegments()
         hrSec.insertSegment(withTitle: "1 hr", at: 0, animated: false)
@@ -54,6 +57,19 @@ class HistoricalViewController: UIViewController {
         let largeGesture = UITapGestureRecognizer(target: self, action: #selector(showLargeView))
         Histlarge.isUserInteractionEnabled = true
         Histlarge.addGestureRecognizer(largeGesture)
+    }
+    
+    private func setupRefreshButton() {
+        // 創建重整按鈕（使用系統的 arrow.clockwise 圖標）
+        let refreshButton = UIBarButtonItem(
+            image: UIImage(systemName: "arrow.clockwise"),
+            style: .plain,
+            target: self,
+            action: #selector(refreshButtonTapped)
+        )
+        refreshButton.tintColor = .white
+        
+        navigationItem.rightBarButtonItem = refreshButton
     }
     
     private func setupChart() {
@@ -278,50 +294,128 @@ class HistoricalViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    // MARK: - Function
-    private func showBloodGlucoseDetail(entry: ChartDataEntry) {
-        let date = Date(timeIntervalSince1970: entry.x)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd HH:mm"
-        let timeString = dateFormatter.string(from: date)
+    @objc private func refreshButtonTapped() {
+        print("重整按鈕被點擊 - 開始下載開通至今的資料")
         
-        let alert = UIAlertController(
-            title: "血糖值",
-            message: "血糖值: \(Int(entry.y)) mg/dL\n記錄時間: \(timeString)",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "確定", style: .default))
-        present(alert, animated: true)
+        // 顯示載入提示
+        let loadingAlert = UIAlertController(title: "載入中", message: "正在下載開通至今的資料...", preferredStyle: .alert)
+        present(loadingAlert, animated: true)
+        
+        // 模擬下載資料（實際應該從 API 或資料庫獲取）
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
+            
+            // 計算開通時間（假設開通時間存儲在 UserDefaults）
+            let accountCreationDate = self.getAccountCreationDate()
+            let now = Date()
+            
+            // 下載從開通至今的所有資料
+            let allData = self.downloadAllDataSinceCreation(from: accountCreationDate, to: now)
+            
+            // 更新資料
+            DispatchQueue.main.async {
+                self.bloodGlucoseData = allData.bloodGlucose
+                self.lifeEvents = allData.lifeEvents
+                self.calibrationPoints = allData.calibrations
+                
+                // 更新圖表
+                self.updateChartData()
+                
+                // 關閉載入提示
+                loadingAlert.dismiss(animated: true) {
+                    // 顯示成功訊息
+                    let successAlert = UIAlertController(
+                        title: "下載完成",
+                        message: "已成功下載開通至今的所有資料\n共 \(allData.bloodGlucose.count) 筆血糖記錄",
+                        preferredStyle: .alert
+                    )
+                    successAlert.addAction(UIAlertAction(title: "確定", style: .default))
+                    self.present(successAlert, animated: true)
+                }
+                
+                print("資料下載完成：血糖記錄 \(allData.bloodGlucose.count) 筆，生活事件 \(allData.lifeEvents.count) 筆，校正點 \(allData.calibrations.count) 筆")
+            }
+        }
     }
     
-    private func showCalibrationDetail(point: CalibrationPoint) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd HH:mm"
-        let timeString = dateFormatter.string(from: point.date)
-        
-        let alert = UIAlertController(
-            title: "血糖校正",
-            message: "校正值: \(Int(point.value)) mg/dL\n記錄時間: \(timeString)",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "確定", style: .default))
-        present(alert, animated: true)
+    private func getAccountCreationDate() -> Date {
+        // 從 UserDefaults 獲取帳戶開通時間
+        // 如果沒有設定，預設為30天前
+        if let creationDate = UserDefaults.standard.object(forKey: "AccountCreationDate") as? Date {
+            return creationDate
+        } else {
+            // 預設開通時間為30天前
+            let defaultDate = Date().addingTimeInterval(-30 * 24 * 3600)
+            UserDefaults.standard.set(defaultDate, forKey: "AccountCreationDate")
+            return defaultDate
+        }
     }
     
-    private func showLifeEventDetail(event: LifeEvent) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd HH:mm"
-        let timeString = dateFormatter.string(from: event.date)
+    private func downloadAllDataSinceCreation(from startDate: Date, to endDate: Date) -> (bloodGlucose: [BloodGlucoseEntry], lifeEvents: [LifeEvent], calibrations: [CalibrationPoint]) {
+        var bloodGlucose: [BloodGlucoseEntry] = []
+        var lifeEvents: [LifeEvent] = []
+        var calibrations: [CalibrationPoint] = []
         
-        let eventName = event.type.displayName
+        // 計算天數
+        let daysSinceCreation = Int(endDate.timeIntervalSince(startDate) / (24 * 3600))
         
-        let alert = UIAlertController(
-            title: eventName,
-            message: "記錄時間: \(timeString)\n註記: \(event.note)",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "確定", style: .default))
-        present(alert, animated: true)
+        print("下載從 \(startDate) 至 \(endDate) 的資料，共 \(daysSinceCreation) 天")
+        
+        // 生成血糖數據（每15分鐘一筆）
+        for day in 0...daysSinceCreation {
+            for hour in 0..<24 {
+                for minute in stride(from: 0, to: 60, by: 15) {
+                    let timeInterval = TimeInterval(day * 24 * 3600 + hour * 3600 + minute * 60)
+                    let date = startDate.addingTimeInterval(timeInterval)
+                    
+                    if date <= endDate {
+                        let value = Double.random(in: 70...280)
+                        bloodGlucose.append(BloodGlucoseEntry(date: date, value: value))
+                    }
+                }
+            }
+        }
+        
+        // 生成生活事件（每天隨機1-3個事件）
+        let eventTypes: [LifeEventType] = [.meal, .exercise, .medicine, .injection]
+        for day in 0...daysSinceCreation {
+            let eventsPerDay = Int.random(in: 1...3)
+            for _ in 0..<eventsPerDay {
+                let randomHour = Int.random(in: 6...22)
+                let randomMinute = Int.random(in: 0...59)
+                let timeInterval = TimeInterval(day * 24 * 3600 + randomHour * 3600 + randomMinute * 60)
+                let date = startDate.addingTimeInterval(timeInterval)
+                
+                if date <= endDate {
+                    let type = eventTypes.randomElement()!
+                    let note = "自動記錄的事件"
+                    lifeEvents.append(LifeEvent(date: date, type: type, note: note))
+                }
+            }
+        }
+        
+        // 生成校正點（每天2個）
+        for day in 0...daysSinceCreation {
+            for hour in [8, 20] { // 早上8點和晚上8點
+                let timeInterval = TimeInterval(day * 24 * 3600 + hour * 3600)
+                let date = startDate.addingTimeInterval(timeInterval)
+                
+                if date <= endDate {
+                    let value = Double.random(in: 80...150)
+                    calibrations.append(CalibrationPoint(date: date, value: value))
+                }
+            }
+        }
+        
+        // 排序資料
+        bloodGlucose.sort { $0.date < $1.date }
+        lifeEvents.sort { $0.date < $1.date }
+        calibrations.sort { $0.date < $1.date }
+        
+        // 模擬網路延遲
+        Thread.sleep(forTimeInterval: 1.5)
+        
+        return (bloodGlucose, lifeEvents, calibrations)
     }
 }
 
@@ -422,3 +516,50 @@ class DateValueFormatter: AxisValueFormatter {
     }
 }
 
+// MARK: - Function
+extension HistoricalViewController {
+    private func showBloodGlucoseDetail(entry: ChartDataEntry) {
+        let date = Date(timeIntervalSince1970: entry.x)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd HH:mm"
+        let timeString = dateFormatter.string(from: date)
+        
+        let alert = UIAlertController(
+            title: "血糖值",
+            message: "血糖值: \(Int(entry.y)) mg/dL\n記錄時間: \(timeString)",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "確定", style: .default))
+        present(alert, animated: true)
+    }
+    
+    private func showCalibrationDetail(point: CalibrationPoint) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd HH:mm"
+        let timeString = dateFormatter.string(from: point.date)
+        
+        let alert = UIAlertController(
+            title: "血糖校正",
+            message: "校正值: \(Int(point.value)) mg/dL\n記錄時間: \(timeString)",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "確定", style: .default))
+        present(alert, animated: true)
+    }
+    
+    private func showLifeEventDetail(event: LifeEvent) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd HH:mm"
+        let timeString = dateFormatter.string(from: event.date)
+        
+        let eventName = event.type.displayName
+        
+        let alert = UIAlertController(
+            title: eventName,
+            message: "記錄時間: \(timeString)\n註記: \(event.note)",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "確定", style: .default))
+        present(alert, animated: true)
+    }
+}
