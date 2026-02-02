@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PersionalInfoViewController" customModule="Seknova" customModuleProvider="target">
+            <connections>
+                <outlet property="btnNext" destination="Otj-eT-liQ" id="pzB-jO-jzb"/>
+                <outlet property="tbvValue" destination="9Ho-FF-5cE" id="cXl-Mi-eUL"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="9Ho-FF-5cE">
+                    <rect key="frame" x="16" y="163" width="361" height="606"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Otj-eT-liQ">
+                    <rect key="frame" x="46" y="789" width="301" height="54.666666666666629"/>
+                    <color key="tintColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="登入"/>
+                    <buttonConfiguration key="configuration" style="plain" title="下一步" cornerStyle="capsule">
+                        <backgroundConfiguration key="background" strokeWidth="6">
+                            <color key="strokeColor" red="0.69197839500000002" green="0.161444217" blue="0.17252144220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </backgroundConfiguration>
+                        <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="btnNextTapped:" destination="-1" eventType="touchUpInside" id="Qtf-yP-3KK"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Otj-eT-liQ" firstAttribute="centerX" secondItem="9Ho-FF-5cE" secondAttribute="centerX" id="10N-jU-e6p"/>
+                <constraint firstItem="9Ho-FF-5cE" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.764085" constant="-45" id="2Pd-zD-JrD"/>
+                <constraint firstItem="9Ho-FF-5cE" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.918575" id="512-jh-A3V"/>
+                <constraint firstItem="9Ho-FF-5cE" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="7BK-aa-m7w"/>
+                <constraint firstItem="Otj-eT-liQ" firstAttribute="top" secondItem="9Ho-FF-5cE" secondAttribute="bottom" constant="20" id="AVt-Kg-YMg"/>
+                <constraint firstItem="9Ho-FF-5cE" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="45" id="ZDh-go-omk"/>
+                <constraint firstItem="Otj-eT-liQ" firstAttribute="height" secondItem="9Ho-FF-5cE" secondAttribute="height" multiplier="0.09" id="d36-Id-hI3"/>
+                <constraint firstItem="Otj-eT-liQ" firstAttribute="width" secondItem="9Ho-FF-5cE" secondAttribute="width" multiplier="0.833795" id="rx7-1j-eYa"/>
+            </constraints>
+            <point key="canvasLocation" x="130.53435114503816" y="-12.67605633802817"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
